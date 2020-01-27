@@ -1,0 +1,338 @@
+@import'../../vendor/eternicode/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
+@import'../../vendor/harvesthq/chosen/chosen.min.css';
+@import'../../vendor/select2/select2/dist/css/select2.min.css';
+@import'stage';
+@import'tribunal';
+@import'animateur';
+@import'prefecture';
+@import'stagiaire';
+@import'login';
+@import'tooltip';
+@import'utilisateur';
+@import'responsive_xlarge';
+@import'responsive_xxlarge';
+@import'responsive_xxlarge';
+@import'404';
+@import'charts';
+
+html {
+
+    body {
+
+        background-color: #f9f9fb;
+
+        .trash_color{
+            color: #dc3545;
+        }
+        .pen_color {
+            color: #ffc107;
+        }
+        .eye_color {
+            color: #17a2b8;
+        }
+        .back-color{
+            color:black;
+            
+        }
+
+        .add_icon{
+            border: solid;
+            border-width: 1px;
+            border-color: rgba(40, 167, 70, 0.3);
+            background-color: rgba(40, 167, 70, 0.116);
+
+            &:hover{
+                background-color: rgba(40, 167, 70, 0.3);
+            }
+            &::before{
+                font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f055";
+                font-size: 1rem;
+                margin-right: 0.5rem;
+                color: #28a745;
+            }
+        }
+
+        .print_icon{
+            color: #313435;
+            margin: 20px;
+            font-size: 18px; 
+        }
+
+        .retour{
+            border: solid;
+            border-width: 1px;
+            border-color: rgba(18, 142, 161, 0.3);
+            background-color: rgba(18, 142, 161, 0.116);
+            margin: auto;
+
+            &:hover{
+                background-color: rgba(18, 142, 161, 0.3);
+            }
+            &::before{
+                font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f060";
+                font-size: 1rem;
+                margin-right: 0.5rem;
+            color: #17a2b8;
+            
+            }
+        }
+
+        font-family: 'Open Sans', sans-serif;
+
+        main {
+
+            img {
+                width: 20%;
+            }
+
+            h1 {
+
+                color: #313435;
+                font-weight: 200;
+            }
+
+            .left_branding {
+                background-color: #ffffff;
+                border-right: solid 1px #cdcdcd;
+                border-bottom: solid 1px #cdcdcd;
+                height: 10vh;
+                top: 0;
+            }
+
+            .top_logout {
+                background-color: #ffffff;
+                border-bottom: solid 1px #cdcdcd;
+                height: 10vh;
+                top: 0;
+                right: 0;
+                z-index: 2;
+            }
+
+            .left_nav {
+                background-color: #ffffff;
+                border-right: solid 1px #cdcdcd;
+                height: 90vh;
+                bottom: 0;
+                -webkit-touch-callout: none;
+                /* iOS Safari */
+                -webkit-user-select: none;
+                /* Safari */
+                -khtml-user-select: none;
+                /* Konqueror HTML */
+                -moz-user-select: none;
+                /* Firefox */
+                -ms-user-select: none;
+                /* Internet Explorer/Edge */
+                user-select: none;
+            }
+
+            .main_content {
+                background-color: #f9f9fb;
+                height: 90vh;
+                padding: 0;
+                right: 0;
+                margin-top: 10vh;
+            }
+
+            .container-fluid {
+
+                .logout {
+                    margin: 0;
+
+                }
+
+                .fa-sign-out-alt {
+                    color: #dc3545;
+                    font-size: 1.5rem;
+                }
+
+                .fa-user-tie {
+                    font-size: 1.5rem;
+                }
+
+                ul {
+                    padding-left: 10px;
+
+                    hr {
+                        margin: 0;
+                    }
+
+                    li {
+                        list-style: none;
+
+                        .ul_without_padding {
+                            padding: 0;
+                            display: none;
+                            opacity: 0;
+                            margin-left: 3.5rem;
+
+                            li {
+
+                                a {
+                                    font-size: 1rem;
+                                    margin-left: .5rem;
+                                }
+                            }
+
+                            .stage_hover {
+                                &:hover {
+                                    color: #ff5744;
+                                }
+                            }
+
+                            .stagiaire_hover {
+                                &:hover {
+                                    color: #009688;
+                                }
+                            }
+
+                            .tribunaux_hover {
+                                &:hover {
+                                    color: #4098f3;
+                                }
+                            }
+
+                            .animateur_hover {
+                                &:hover {
+                                    color: #ff9738;
+                                }
+                            }
+
+                            .prefecture_hover {
+                                &:hover {
+                                    color: #9c2db3;
+                                }
+                            }
+
+                            .background_stage {
+                                background-color: rgba(255, 87, 68, 0.1);
+                            }
+
+                            .background_stagiaire {
+                                background-color: rgba(0, 150, 136, 0.116);
+                            }
+
+                            .background_tribunaux {
+                                background-color: rgba(64, 152, 243, 0.1);
+                            }
+
+                            .background_animateur {
+                                background-color: rgba(255, 151, 56, 0.1);
+                            }
+
+                            .background_prefecture {
+                                background-color: rgba(156, 45, 179, 0.1);
+                            }
+                        }
+
+                        .angle_blue {
+                            color: #4098f3;
+                            font-size: 2rem;
+                            transition: .5s;
+                            cursor: pointer;
+                            position: absolute;
+                            right: 15px;
+                            margin-top: 4px;
+                        }
+
+                        .angle_green {
+                            color: #009688;
+                            font-size: 2rem;
+                            transition: .5s;
+                            cursor: pointer;
+                            position: absolute;
+                            right: 15px;
+                            margin-top: 4px;
+                        }
+
+                        .angle_orange {
+                            color: #ff9738;
+                            font-size: 2rem;
+                            transition: .5s;
+                            cursor: pointer;
+                            position: absolute;
+                            right: 15px;
+                            margin-top: 4px;
+                        }
+
+                        .angle_purple {
+                            color: #9c2db3;
+                            font-size: 2rem;
+                            transition: .5s;
+                            cursor: pointer;
+                            position: absolute;
+                            right: 15px;
+                            margin-top: 4px;
+                        }
+
+                        .angle_red {
+                            color: #ff5744;
+                            font-size: 2rem;
+                            transition: .5s;
+                            cursor: pointer;
+                            position: absolute;
+                            right: 15px;
+                            margin-top: 4px;
+                        }
+
+                        a {
+                            text-decoration: none;
+                            font-size: 1.5rem;
+
+                            color: #313435;
+
+                            &:hover {
+                                cursor: pointer;
+                            }
+
+                            .fa-microsoft {
+                                color: #a1ceff;
+                                margin-right: 2.6rem;
+                                margin-left: 0.3rem;
+                            }
+
+                            .fa-calendar-alt {
+                                color: #ff5744;
+                                margin-right: 2.6rem;
+                                margin-left: 0.3rem;
+                            }
+
+                            .fa-users {
+                                color: #009688;
+                                margin-right: 2.3rem;
+                            }
+
+                            .fa-balance-scale {
+                                color: #4098f3;
+                                margin-right: 2.3rem;
+                            }
+
+                            .fa-graduation-cap {
+                                color: #ff9738;
+                                margin-right: 2.3rem;
+                            }
+
+                            .fa-address-card {
+                                color: #9c2db3;
+                                margin-right: 2.4rem;
+                            }
+
+                            .fa-key {
+                                color: #795548;
+                                margin-right: 2.6rem;
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+    }
+}
+.chosen-container-multi .chosen-choices{
+    height: 38px;
+    font-size: 1rem;
+    color: black;
+}
+

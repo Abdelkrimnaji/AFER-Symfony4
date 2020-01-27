@@ -1,0 +1,58 @@
+.background_tribunal{
+    background-color: rgba(64, 152, 243, 0.1);
+}
+
+.h2_tribunal{
+    color: #4098f3;
+}
+
+.tribunal_add{
+    margin-top: 2rem;
+    margin-left: -1rem;
+}
+
+.tribunal_border{
+    border: solid 1px #cdcdcd;
+}
+
+.btn_tribunal{
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(64, 152, 243, 0.3);
+    background-color: rgba(64, 152, 243, 0.116);
+
+    &:hover{
+        background-color: rgba(64, 152, 243, 0.3);
+    }
+    &::before{
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f065";
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    color: #4098f3;
+    
+    }
+}
+    #select, #selectStagiaire, #selectTribunal,  #selectAnimateur, #selectPrefecture, #selectInfraction{
+        position: absolute;
+        height: 35vh;
+        overflow: auto;
+    z-index: 1;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}
+#select p:hover, #selectStagiaire p:hover, #selectTribunal p:hover, #selectAnimateur p:hover, #selectPrefecture p:hover, #selectInfraction p:hover{
+    background-color: rgba(82, 75, 75,0.2);
+    cursor: pointer;
+}
+
+.listeHidden{
+    display: none;
+}

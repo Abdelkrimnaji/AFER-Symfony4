@@ -1,0 +1,42 @@
+.body-login {
+    height: 100vh;
+    background-color: #f2f2f2;
+}
+
+.bloc-login {
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,.1);
+    border-radius: 10px;
+}
+
+.h1-login {
+    color: #565656;
+}
+
+.logo-login {
+    height: 120px;
+    width: 120px;
+}
+
+.btn-login {
+    background-color: #00509f;
+    &:hover{
+        background-color: #fecd01;
+        border-color: #fecd01;
+        color: #565656;
+    }
+}
+
+.fa-user, .fa-unlock-alt {
+    color: #adadad;
+    font-size: 1.5rem;
+}
+
+#inputUsername, #inputPassword {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #adadad;
+    &:focus {
+        box-shadow: none;
+    }
+}

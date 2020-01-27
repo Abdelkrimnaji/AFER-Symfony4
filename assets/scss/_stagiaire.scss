@@ -1,0 +1,190 @@
+.background_stagiaire {
+    background-color: rgba(0, 150, 136, 0.1);
+}
+
+.h2_stagiaire {
+    color: #009688;
+}
+
+.stagiaire_border{
+   
+    border: solid 1px #cdcdcd;
+}
+
+.btn_stagiaire{
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0, 150, 136, 0.3);
+    background-color: rgba(0, 150, 136, 0.116);
+
+    &:hover{
+        background-color: rgba(0, 150, 136, 0.3);
+    }
+    &::before{
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f065";
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    color: #009688;
+    
+    }
+}
+#stagiaire_dateNaissanceStagiaire_day {
+    margin-right: 15px;
+}
+#stagiaire_dateNaissanceStagiaire_month {
+    margin-right: 15px;
+}
+
+.btn-details{
+   
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(0, 150, 136, 0.3);
+    background-color: rgba(0, 150, 136, 0.116);
+    margin-right: 0.5rem !important;
+
+    &:hover{
+        background-color: rgba(0, 150, 136, 0.3);
+    }
+    &::before{
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f129";
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    color: #009688;
+    
+    }}
+
+    .btn-permis {
+        font-size: 0.75rem;
+        border: solid;
+        border-width: 1px;
+        border-color: rgba(0, 150, 136, 0.3);
+        background-color: rgba(0, 150, 136, 0.116);
+        margin-right: 0.5rem !important;
+    
+        &:hover{
+            background-color: rgba(0, 150, 136, 0.3);
+        }
+        &::before{
+            font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f2c1";
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        color: #009688;
+        
+        }
+    }
+        .btn-infraction {
+            border: solid;
+            border-width: 1px;
+            border-color: rgba(0, 150, 136, 0.3);
+            background-color: rgba(0, 150, 136, 0.116);
+            margin-right: 0.5rem !important;
+        
+            &:hover{
+                background-color: rgba(0, 150, 136, 0.3);
+            }
+            &::before{
+                font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f05e";
+                font-size: 1rem;
+                margin-right: 0.5rem;
+            color: #009688;
+            
+            }
+            }
+
+            .btn-condamnation {
+                border: solid;
+                border-width: 1px;
+                border-color: rgba(0, 150, 136, 0.3);
+                background-color: rgba(0, 150, 136, 0.116);
+            
+                &:hover{
+                    background-color: rgba(0, 150, 136, 0.3);
+                }
+                &::before{
+                    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f0e3";
+                    font-size: 1rem;
+                    margin-right: 0.5rem;
+                color: #009688;
+                
+                }
+                }
+
+
+            .onglet {
+                font-size: 1rem;
+            }
+
+           
+            #stagiaire_avantage {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: flex-start;
+                
+                .form-check-label {
+                    padding-right: 1.5rem;
+                } 
+
+            }
+
+            .hidden {
+                display: none;
+            }
+
+            .bill{
+                border: solid;
+                border-width: 1px;
+                border-color: rgba(0, 150, 136, 0.3);
+                background-color: rgba(0, 150, 136, 0.116);
+                margin: auto;
+    
+                &:hover{
+                    background-color: rgba(0, 150, 136, 0.3);
+                }
+                &::before{
+                    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f153";
+                    font-size: 1rem;
+                    margin-right: 0.5rem;
+                color:#009688;
+                
+                }
+            }
+
+            .confirm{
+                border: solid;
+                border-width: 1px;
+                border-color: rgba(0, 150, 136, 0.3);
+                background-color: rgba(0, 150, 136, 0.116);
+                margin: auto;
+    
+                &:hover{
+                    background-color: rgba(0, 150, 136, 0.3);
+                }
+                &::before{
+                    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f058";
+                    font-size: 1rem;
+                    margin-right: 0.5rem;
+                color:#009688;
+                
+                }
+            }
+
+            .notice{
+                border: solid;
+                border-width: 1px;
+                border-color: rgba(0, 150, 136, 0.3);
+                background-color: rgba(0, 150, 136, 0.116);
+                margin: auto;
+    
+                &:hover{
+                    background-color: rgba(0, 150, 136, 0.3);
+                }
+                &::before{
+                    font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f658";
+                    font-size: 1rem;
+                    margin-right: 0.5rem;
+                color:#009688;
+                
+                }
+            }

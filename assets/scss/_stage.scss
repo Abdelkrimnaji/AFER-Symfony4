@@ -1,0 +1,133 @@
+.background_stage {
+    background-color: rgba(255, 87, 68, 0.1);
+}
+
+.h2_stage{
+    color: #ff5744;
+}
+
+.lieustage_margin{
+    margin: 0;
+}
+
+.lieustage_border{
+       border: solid 1px #cdcdcd;
+}
+
+.lieustage_button{
+    margin-left: 25%;
+}
+
+table{
+    margin: 0 !important;
+}
+.btn_lieustage{
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(255, 87, 68, 0.3);
+    background-color: rgba(255, 87, 68, 0.116);
+
+    &:hover{
+        background-color: rgba(255, 87, 68, 0.3);
+    }
+    &::before{
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f065";
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    color: #ff5744;
+    
+    }
+}
+.note{
+    font-size: 11px;
+    margin-bottom: 0px;
+
+}
+.table-margin {
+    margin-bottom: 0px !important;
+}
+
+.btn-stage-tous {
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(255, 87, 68, 0.3);
+    background-color: rgba(255, 87, 68, 0.116);
+    margin-right: 0.5rem !important;
+    padding-bottom: 0.8rem;
+
+    &:hover{
+        background-color: rgba(255, 87, 68, 0.3);
+    }
+    &::before{
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f362";
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    color: #ff5744;
+    
+    }
+    }
+
+    .btn-stage-futur {
+        border: solid;
+        border-width: 1px;
+        border-color: rgba(255, 87, 68, 0.3);
+    background-color: rgba(255, 87, 68, 0.116);
+        margin-right: 0.5rem !important;
+        padding-bottom: 0.8rem;
+    
+        &:hover{
+            background-color: rgba(255, 87, 68, 0.3);
+        }
+        &::before{
+            font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f30b";
+            font-size: 1rem;
+            margin-right: 0.5rem;
+        color: #ff5744;
+        
+        }
+        }
+        #stage_cas {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+            
+            .form-check-label {
+                padding-right: 1.5rem;
+            }
+        }
+        .list{
+            border: solid;
+            border-width: 1px;
+            border-color: rgba(255, 87, 68, 0.3);
+            background-color: rgba(255, 87, 68, 0.116);
+        
+            &:hover{
+                background-color: rgba(255, 87, 68, 0.3);
+            }
+            &::before{
+                font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f46d";
+                font-size: 1rem;
+                margin-right: 0.5rem;
+            color: #ff5744;
+            
+            }
+        }
+
+        .bordereau{
+            border: solid;
+            border-width: 1px;
+            border-color: rgba(255, 87, 68, 0.3);
+            background-color: rgba(255, 87, 68, 0.116);
+        
+            &:hover{
+                background-color: rgba(255, 87, 68, 0.3);
+            }
+            &::before{
+                font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f46c";
+                font-size: 1rem;
+                margin-right: 0.5rem;
+            color: #ff5744;
+            
+            }
+        }

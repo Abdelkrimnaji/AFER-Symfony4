@@ -1,0 +1,18 @@
+@media (min-width: 1200px) and (max-width: 1400px) { 
+    body{
+        main{
+            .left_branding{
+                max-width: 25%;
+            }
+            .left_nav{
+                max-width: 25%;
+            }
+            .top_logout{
+                max-width: 75%;
+            }
+            .main_content{
+                max-width: 75%;
+            }
+        }
+    }
+}

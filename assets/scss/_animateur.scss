@@ -1,0 +1,30 @@
+.background_animateur{
+    background-color: rgba(255, 151, 56, 0.1);
+}
+
+.h2_animateur{
+    color: #ff9738;
+}
+
+.animateur_border{
+   
+    border: solid 1px #cdcdcd;
+}
+
+.btn_animateur{
+    border: solid;
+    border-width: 1px;
+    border-color: rgba(255, 151, 56, 0.3);
+    background-color: rgba(255, 151, 56, 0.116);
+
+    &:hover{
+        background-color: rgba(255, 151, 56, 0.3);
+    }
+    &::before{
+        font-family: "Font Awesome 5 Free"; font-weight: 900; content: "\f065";
+        font-size: 1rem;
+        margin-right: 0.5rem;
+    color: #ff9738;
+    
+    }
+}
