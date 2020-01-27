@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+<section class="stagiaire">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="ml-5 h2_stagiaire mt-5 mb-5">Liste des stagiaires - Total de {{ stagiaires.getTotalItemCount }}</h2>
+        <form>
+            <div class="input-group mb-3">
+                <input type="text" id="myInput" value="{{ app.request.query.get('q') }}" name="q"
+                    class="form-control search" placeholder="Rechercher un stagiaire...">
+                <div class="input-group-append">
+                    <button type="submit" value="submit" class="btn btn-outline-secondary">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="document.getElementById('myInput').value = ''">
+                        <span class="fa fa-backspace"></span>
+                    </button>
+                </div>
+            </div>
+        </form>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('stagiaire_ajouter')}}" class="btn mr-5 add_icon d-flex align-items-center">Ajouter</a>
+        {% endif %}
+    </div>
+    <ul class="nav nav-pills pl-0 d-flex justify-content-between align-items-center">
+        <div>
+            <li class="active btn btn-details"><a class="onglet" href="{{ path('stagiaire_index')}}">Coordonnées</a>
+            </li>
+            <li class="btn btn-permis"><a class="onglet" href="{{ path('stagiaire_permis_index')}}">Permis</a></li>
+            <li class="btn btn-infraction"><a class="onglet"
+                    href="{{ path('stagiaire_infraction_index')}}">Infraction</a>
+            </li>
+            
+        </div>
+        <div class="text-right">
+            <a data-toggle="tooltip" data-placement="top" title="Imprimer cette page" target="_blank"
+                href="{{ path('stagiaire_imprimer')}}" <i class="mr-5 fas fa-print print_icon"></i></a>
+        </div>
+    </ul>
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_stagiaire">
+                <th scope="col" class="pl-5 text-left">
+                    {{ knp_pagination_sortable(stagiaires, 'Nom', 'q.nomStagiaire') }}</th>
+                <th scope="col" class="text-left">
+                    {{ knp_pagination_sortable(stagiaires, 'Prénom', 'q.prenomStagiaire') }}</th>
+                <th scope="col" class="text-left">Email</th>
+                <th scope="col" class="text-left">N° de portable</th>
+                <th scope="col" class="text-left">N° fixe</th>
+                <th scope="col" class="text-left">Cas</th>
+                <th scope="col" class="text-left">Stage</th>
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <td class="pl-5 text-left">{{ stagiaire.nomStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.prenomStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.emailStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.numeroPortableStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.numeroFixeStagiaire}}</td>
+
+                {% if stagiaire.participations is not empty %}
+                {% for participation in stagiaire.participations %}
+                {% if participation.cas.numeroCas is defined %}
+                <td class="text-left">{{ participation.cas.numeroCas }}</td>
+                {% else %}
+                <td class="text-left">Aucun cas défini</td>
+                {% endif %}
+ {% endfor %}
+  {% else %}
+                <td class="text-left">----------</td>
+                 {% endif %}
+                 {% if stagiaire.participations is not empty %}
+                {% for participation in stagiaire.participations %}
+               {% if participation.stage is not empty %}
+                {% if participation.stage.dated < date() %}
+                <td class="text-left">Terminé</br></td>
+                {% else %}
+                <td class="text-left">{{ participation.stage.dated|localizeddate('long', 'none', 'fr')}} </td>
+                 {% endif %}
+                  {% endif %}
+                {% endfor %}
+                {% else %}
+                <td class="text-left">Aucun stage défini</td>
+                
+                {% endif %}
+                
+
+                <td class="text-center">
+                    <a data-toggle="tooltip" data-placement="top" title="Voir le stagiaire"
+                        href="{{  path('stagiaire_afficher', {'id': stagiaire.id}) }}"><i
+                            class="far fa-eye eye_color"></i></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier le stagiaire"
+                        href="{{  path('stagiaire_modifier', {'id': stagiaire.id}) }}"><i
+                            class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+                    <a data-toggle="modal" data-target="#stagiaireDelete{{ stagiaire.id }}" data-placement="top"
+                        title="Supprimer le stagiaire" href="#"><i class="far fa-trash-alt trash_color"></i></a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="stagiaireDelete{{ stagiaire.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Attention !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Vous êtes sur le point de supprimer un stagiaire
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Annuler</button>
+                                    <a href="{{  path('stagiaire_supprimer', {'id': stagiaire.id}) }}"
+                                        class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </td>
+            </tr>
+            {% else %}
+            <td class="pl-5 text-center">Il n'y a aucun stagiaire</td>
+            <td class="text-center">...</td>
+            <td class="text-center">...</td>
+            <td class="text-center">...</td>
+            <td class="text-center">...</td>
+            <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="pt-4 d-flex justify-content-center pagination">
+        {{ knp_pagination_render(stagiaires) }}</div>
+</section>
+{% endblock %}

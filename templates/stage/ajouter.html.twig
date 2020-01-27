@@ -1,0 +1,219 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <div>
+        {% if editMode %}
+        <h1 class="mt-5 mb-5 h2_stage">Modifier un stage</h1>
+        {% else %}
+        <h1 class="mt-5 mb-5 h2_stage">Ajouter un stage</h1>
+        {% endif %}
+    </div>
+    <div class="text-center">
+        {% if error is defined %}
+        <h4 class="text-danger">Le stage existe déjà</h4>
+        {% endif %}
+    </div>
+    {{ form_start(formStage, {attr: {novalidate: 'novalidate'}}) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStage.numero_stage, {'label': 'Numéro', 'attr': {'placeholder': 'Numéro'} }) }}
+        </div>
+        
+        <div class="col">
+            {{ form_row(formStage.stage_programme_officiel, {'label': 'Stage Programme officiel', 'attr':
+            {'placeholder': 'Stage Programme officiel'} }) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            {{ form_row(formStage.dated, {'label': 'Date de début', 'attr': {'placeholder': 'Date de début'} }) }}
+        </div>
+        <div class="col-6">
+            {{ form_row(formStage.datef, {'label': 'Date de fin', 'attr': {'placeholder': 'Date de fin'} }) }}
+        </div>
+    </div>
+    {# <div class="row">
+        <div class="col-5">
+            {{ form_row(formStage.prefecture, {'label': 'Prefécture'}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addPrefecture" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCartPrefecture">+</button>
+        </div>
+        <div class="col-5">
+            {{ form_row(formStage.tribunal, {'label': 'Tribunal'}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addTribunal" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCartTribunal">+</button>
+        </div>
+    </div> #}
+    <div class="row">
+        <div class="col-5">
+            {{ form_row(formStage.lieuStage, {'label': 'Lieu de stage'}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addLieuStage" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCartLieuStage">+</button>
+        </div>
+        <div class="col-5">
+            {{ form_row(formStage.animateurs, {'label': 'Animateur/Animatrice'}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addAnimateur" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCartAnimateur">+</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-11">
+            {{ form_row(formStage.stagiaire, {'label': 'Stagiaire'}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addStagiaire" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCartStagiaire">+</button>
+        </div>
+    </div>
+    {% if editMode %}
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Modifier
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% endif %}
+    {{ form_end(formStage) }}
+
+</div>
+
+<!-- Modal: modalCart -->
+{# <div class="modal fade" id="modalCartTribunal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un tribunal</h4>
+                <button type="button" class="closeTribunal" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorTribunal"></div>
+        </div>
+    </div>
+</div> #}
+<!-- Modal: modalCart -->
+
+<!-- Modal: modalCart -->
+{# <div class="modal fade" id="modalCartPrefecture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter une préfecture</h4>
+                <button type="button" class="closePrefecture" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorPrefecture"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart --> #}
+
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCartStagiaire" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un stagiaire</h4>
+                <button type="button" class="closeStagiaire" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorStagiaire"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart -->
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCartAnimateur" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un animateur</h4>
+                <button type="button" class="closeAnimateur" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorAnimateur"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart -->
+
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCartLieuStage" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un lieu de stage</h4>
+                <button type="button" class="closeLieuStage" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorLieuStage"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart -->
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $(document).ready(function () {
+        // you may need to change this code if you are not using Bootstrap Datepicker
+        $('.js-datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'fr'
+        });
+    });
+    $().ready(function () {
+        $('select.animateur-select').chosen({
+            placeholder_text_multiple: "Sélectionner deux animateurs au maximum",
+            max_selected_options: 2,
+            no_results_text: "L'animateur recherché n'est pas dans la liste !"
+        });
+        $('select.stagiaire-select').chosen({
+            placeholder_text_multiple: "Sélectionner un ou des stagiaires",
+            no_results_text: "Le stagiaire recherché n'est pas dans la liste !"
+        });
+    });
+</script>
+{% endblock %}
+{% block selectjs %}
+<script src="{{ asset('build/select.js') }}"></script>
+{% endblock %}

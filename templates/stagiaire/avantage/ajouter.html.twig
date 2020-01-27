@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+
+    {{ form_start(formAvantage) }}
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_tribunal">Modifier un avantage</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_tribunal">Ajouter un avantage</h2>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formAvantage.avantage, {'label': "Nom de l'avantage :", 'attr': {'placeholder': "Nom de l'avantage"}}) }}
+        </div>
+    </div>
+
+     {% if editMode %}
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+    Enregistrer
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+    Enregistrer
+    </button>
+    {% endif %}
+
+
+    {{ form_end(formAvantage) }}
+</div>
+
+
+{% endblock %}

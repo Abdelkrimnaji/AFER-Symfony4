@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="prefecture">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="ml-5 h2_prefecture d-flex align-items-center  mt-5 mb-5">Liste des autorités pour les préfectures</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('prefectureAutorite_ajouter') }}" class="btn mr-5 add_icon d-flex align-items-center">Ajouter</a>
+        {% endif %}
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_prefecture">
+                <th scope="col" class="pl-5 text-left">Nom de l'autorité</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+                {% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for autorite in autorites %}
+            <tr>
+                <td class="pl-5 text-left">{{ autorite.nom }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td class="text-center">
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier l'autorité" href="{{ path('prefectureAutorite_modifier', {'id': autorite.id}) }}"><i
+                            class="fas fa-pen pen_color"></i></a>
+                    <a data-id="{{ autorite.id }}" data-target="#prefectureAutoriteDelete" class="prefectureAutoriteDelete" data-placement="top" title="Supprimer l'autorité" href="{{  path('prefecture_autorite_suppr_alert') }}"><i
+                            class="far fa-trash-alt trash_color pl-2"></i></a>
+
+                </td>
+
+                <!-- Modal -->
+                <div class="modal fade" id="prefectureAutoriteDelete" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Attention !</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Vous êtes sur le point de supprimer une autorité
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <a href="#" class="btn btn-danger">Confirmer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+            </tr>
+            {% else %}
+            <td class="pl-5 text-left">Il n'y a aucune autorité</td>
+            <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}

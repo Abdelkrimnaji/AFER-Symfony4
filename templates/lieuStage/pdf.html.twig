@@ -1,0 +1,65 @@
+
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+ font-size:12;
+}
+th {
+  padding: 3px;
+  text-align: center;
+}
+td {
+  padding: 3px;
+  text-align: left;
+}
+table {
+  width: 100%;    
+  }
+  h2 {
+    text-align: center;
+  }
+   footer {
+                position: fixed; 
+                bottom: 0cm; 
+                left: 0cm; 
+                right: 0cm;
+                height: 2cm;
+
+                /** Extra personal styles **/
+
+                text-align: center;
+                line-height: 1.5cm;
+            }
+</style>
+</head>
+{% block body %}
+        <h2>Liste des lieux de stage</h2>
+    
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_stage">
+                <th scope="col" class="pl-5 text-left">Nom de l'établissement</th>
+                <th scope="col" class="text-left">Adresse</th>
+                <th scope="col" class="text-left">N° de téléphone</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for lieuStage in lieuStages %}
+            <tr>
+                <td class="pl-5 text-left">{{ lieuStage.nomEtablissement }}</td>
+                 </td>
+                <td class="text-left">   
+{{ lieuStage.numeroAdresseStage }}, {{ lieuStage.AdresseStage }}<br> {{ lieuStage.nomCommune }}<p>
+                </td>
+                <td class="text-left">{{ lieuStage.telephoneStage }}</td>
+
+                
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+{% endblock %}

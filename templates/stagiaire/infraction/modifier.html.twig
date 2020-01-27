@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+    <div>
+        <h2 class="mt-5 mb-5 h2_stage">Modifier une infraction</h2>
+    </div>
+    {{ form_start(formInfraction) }}
+    <div class="row">
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formInfraction.lieuInfraction, {'label': "Lieu de l'infraction :", 'attr': {'placeholder':
+            "Lieu de l'infraction"}}) }}
+            <div id="selectInfraction" class="listeHidden"></div>
+        </div>
+        <div class="col">
+            {{ form_row(formInfraction.dateInfraction, {'label': "Date et heure de l'infraction :", 'attr': {'placeholder': "Date et heure de l'infraction"}})}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formInfraction.natureInfraction, {'label': "Nature de l'infraction :", 'attr': {'placeholder': "Nature de l'infraction"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(formInfraction.dateCondamnation, {'label': "Date de la condamnation :", 'attr': {'placeholder': "Date de la condamnation"}})
+            }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formInfraction.numeroParquet, {'label': "Numéro de parquet :", 'attr': {'placeholder': "Numéro de parquet"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(formInfraction.tribunal, {'label': "Tribunal :", 'attr': {'placeholder': "Tribunal"}})
+            }}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">Modifier</button>
+    {{ form_end(formInfraction) }}
+</div>
+{% endblock %}
+{% block selectjs %}
+<script src="{{ asset('build/select.js') }}"></script>
+{% endblock %}

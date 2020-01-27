@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="mt-5 container-fluid">
+    <div class="w-100 prefecture_border">
+        <h2 class="text-center background_prefecture pt-2 pb-2 lieustage_margin">{{prefectures.nomPrefecture}}</h2>
+        <table class="table table-striped">
+            <tbody>
+                {# <tr>
+                    <td class="font-weight-bold">Nom de la préfecture :</td>
+                    <td class="text-left">{{ prefectures.nomPrefecture }}</td>
+                </tr> #}
+                <tr>
+                    <td class="font-weight-bold">Autorité :</td>
+                    <td class="text-left">{{ prefectures.prefectureAutorite }}</td>
+                    <td class="font-weight-bold">Service :</td>
+                    <td class="text-left">{{ prefectures.prefectureService }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Adresse :</td>
+                    <td class="text-left">{{ prefectures.numeroAdressePrefecture }}, {{ prefectures.adressePrefecture }}</td>
+                    <td class="font-weight-bold">Commune :</td>
+                    <td class="text-left">{{ prefectures.communePrefecture }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ path('prefecture_index') }}" class="btn retour lieustage_button mt-3">Retour</a>
+</div>
+
+{% endblock %}

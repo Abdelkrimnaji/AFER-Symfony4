@@ -1,0 +1,95 @@
+<div class="container">
+
+    {{ form_start(form) }}
+
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.civilite, {'label': "Civilité :", 'attr': {'placeholder': "Civilité"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.nom_animateur, {'label': "Nom :", 'attr': {'placeholder': "Nom"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.prenom_animateur, {'label': "Prenom :", 'attr': {'placeholder': "Prenom"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.numero_rue_animateur, {'label': "Numéro de rue :", 'attr': {'placeholder': "Numéro rue"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.rue_animateur, {'label': "Rue :", 'attr': {'placeholder': "Rue"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.commune_animateur, {'label': "Commune :", 'attr': {'placeholder': "Commune"}}) }}
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.region_animateur, {'label': "Region :", 'attr': {'placeholder': "Region"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.email_animateur, {'label': "Email :", 'attr': {'placeholder': "Email"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.numero_portable_animateur, {'label': "N° de portable :", 'attr': {'placeholder':
+            "N° de portable"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.numero_fixe_animateur, {'label': "N° de fixe :", 'attr': {'placeholder': "N° de fixe"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.siret_animateur, {'label': "N° SIRET :", 'attr': {'placeholder': "N° SIRET"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.urssaf_animateur, {'label': "N° URSSAF :", 'attr': {'placeholder': "N° URSSAF"}})
+            }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.raison_sociale_animateur, {'label': "Raison sociale :", 'attr': {'placeholder':
+            "Raison sociale"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.gta_animateur, {'label': "Gestion technique et administrative :", 'attr':
+            {'placeholder': "Gestion technique et administrative"}})
+            }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-5">
+            {{ form_row(form.animateurFonction, {'label':"Fonction de l'animateur", 'attr': {'placeholder':
+            "Fonction animateur"}}) }}
+        </div>
+        <div class="col-5">
+            {{ form_row(form.animateurStatut, {'label':"Statut de l'animateur", 'attr': {'placeholder':
+            "Statut
+            animateur"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.observations_animateur, {'label': "Observations :", 'attr': {'placeholder':
+            "Observations"}})}}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter l'animateur</button>
+
+    {{ form_end(form) }}
+
+</div>

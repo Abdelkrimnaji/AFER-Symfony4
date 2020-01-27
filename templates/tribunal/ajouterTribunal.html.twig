@@ -1,0 +1,120 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_tribunal">Modifier un tribunal</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_tribunal">Ajouter un tribunal</h2>
+        {% endif %}
+    </div>
+    <div class="text-center">
+        {% if error is defined %}
+            <h4 class="text-danger">Le tribunal existe déjà</h4>
+        {% endif %}
+    </div>
+
+    {{ form_start(form) }}
+
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.nom_tribunal, {'label': "Nom du tribunal :", 'attr': {'placeholder':
+            "Nom"}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-2">
+            {{ form_row(form.numero_adresse_tribunal, {'label': "N° de rue :", 'attr': {'placeholder':
+            "N° de rue"}}) }}
+        </div>
+        <div class="col-10">
+            {{ form_row(form.adresse_tribunal, {'label': "Adresse :", 'attr': {'placeholder':
+            "Adresse"}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            {{ form_row(form.commune_tribunal, {'label': "Commune :", 'attr': {'placeholder':
+            "Commune"}}) }}
+            <div id="selectTribunal" class="listeHidden"></div>
+        </div>
+        <div class="col-3">
+            {{ form_row(form.tribunal_autorite, {'label':"Autorité du tribunal", 'attr': {'placeholder':
+            "Autorité du tribunal"}}) }}
+        </div>
+        <div class="col-1" data-toggle="tooltip" data-placement="top" title="Ajouter une autorité">
+            <button type="button" id="addAutoriteTribunal" class="btn btn-success tribunal_add" data-toggle="modal" data-target="#modalCart">
+                +
+            </button>
+        </div>
+        <div class="col-3">
+            {{ form_row(form.tribunal_service, {'label':"Service du tribunal", 'attr': {'placeholder': "Service du
+            tribunal"}}) }}
+        </div>
+        <div class="col-1" data-toggle="tooltip" data-placement="top" title="Ajouter un service">
+            <button type="button" id="addServiceTribunal" class="btn btn-success tribunal_add" data-toggle="modal" data-target="#modalCart2">
+                +
+            </button>
+        </div>
+    </div>
+
+
+    {% if editMode %}
+        <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Modifier
+        </button>
+    {% else %}
+        <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+        </button>
+    {% endif %}
+
+    {{ form_end(form) }}
+</div>
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter une autorité</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true"><i class="fas fa-times-circle"></i></span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorAutoriteTribunal"></div>
+        </div>
+    </div>
+</div>
+<!-- Modal: modalCart -->
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCart2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un service</h4>
+                <button type="button" class="close2" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" ><i class="fas fa-times-circle"></i></span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="error2"></div>
+        </div>
+    
+</div>
+<!-- Modal: modalCart -->
+
+{% endblock %}
+{% block selectjs %}
+    <script src="{{ asset('build/select.js') }}"></script>
+ {% endblock %}

@@ -1,0 +1,59 @@
+{{ form_start(form) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.nom_etablissement, {'label': "Nom de l'établissement :", 'attr': {'placeholder':
+            "Nom de l'établissement"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.agrement, {'label': "N° d'agrément :", 'attr': {'placeholder': "N°
+            d'agrément"}})}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            {{ form_row(form.numero_adresse_stage, {'label': "N° de rue :", 'attr': {'placeholder': "N° de
+            rue"}}) }}
+        </div>
+        <div class="col-10">
+            {{ form_row(form.adresse_stage, {'label': "Adresse :", 'attr': {'placeholder': "Adresse"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.nom_commune, {'label': "Commune :", 'attr': {'placeholder': "Commune"}}) }}
+            <div id="select" class="listeHidden"></div>
+        </div>
+        <div class="col">
+            {{ form_row(form.latitude, {'label': "Latitude Décimaux:", 'attr': {'placeholder': "Latitude Décimaux"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.longitude, {'label': "Longitude Décimaux:", 'attr': {'placeholder': "Longitude Décimaux"}}) }}
+        </div>
+        </div>
+         <div class="row">
+         <div class="col">
+            {{ form_row(form.dmsLatitude, {'label': "Latitude DMS:", 'attr': {'placeholder': "Latitude DMS"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.dmsLongitude, {'label': "Longitude DMS:", 'attr': {'placeholder': "Longitude DMS"}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.telephone_stage, {'label': "N° de téléphone :", 'attr': {'placeholder': "N° de
+            téléphone"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.divers, {'label': "Divers :", 'attr': {'placeholder': "Divers"}}) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+
+    <button class="btn btn-success" type="submit">Ajouter un lieu de stage</button>
+
+    {{ form_end(form) }}
+         
+

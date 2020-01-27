@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="prefecture">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="ml-5 h2_prefecture mt-5 mb-5">Liste des services pour les préfectures</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('prefectureService_ajouter') }}" class="btn mr-5 add_icon d-flex align-items-center">Ajouter</a>
+        {% endif %}
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_prefecture">
+                <th scope="col" class="pl-5 text-left">Nom du service</th>
+                {% if is_granted('ROLE_ADMIN') %}
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+                {% endif %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for service in services %}
+            <tr>
+                <td class="pl-5 text-left">{{ service.nom }}</td>
+                {% if is_granted('ROLE_ADMIN') %}
+                <td class="text-center">
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier le service" href="{{ path('prefectureService_modifier', {'id': service.id}) }}"><i
+                            class="fas fa-pen pen_color"></i></a>
+                    <a data-id="{{ service.id }}" data-target="#prefectureServiceDelete" class="prefectureServiceDelete" data-placement="top" title="Supprimer le service" href="{{  path('tribunal_service_suppr_alert') }}"><i
+                            class="far fa-trash-alt trash_color pl-2"></i></a>
+                </td>
+
+
+                <!-- Modal -->
+                <div class="modal fade" id="prefectureServiceDelete" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Attention !</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Vous êtes sur le point de supprimer un service
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                <a href="#" class="btn btn-danger">Confirmer</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+            </tr>
+            {% else %}
+            <td class="pl-5 text-left">Il n'y a aucun service</td>
+            <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+{% endblock %}

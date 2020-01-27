@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {{ form_start(formPrefecture) }}
+        <div>
+            {% if editMode %}
+                <h2 class="mt-5 mb-5 h2_prefecture">Modifier une préfecture</h2>
+            {% else %}
+                <h2 class="mt-5 mb-5 h2_prefecture">Ajouter une préfecture</h2>
+            {% endif %}
+        </div>
+        <div class="text-center">
+                {% if error is defined %}
+                    <h4 class="text-danger">La préfecture existe déjà</h4>
+                {% endif %}
+            </div>
+        <div class="row">
+            <div class="col">
+                {{ form_row(formPrefecture.nomPrefecture, {'label': 'Nom de la préfecture : ', 'attr': {'placeholder':
+                'Nom'}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                {{ form_row(formPrefecture.numeroAdressePrefecture, {'label': "N° de rue :", 'attr': {'placeholder':
+                "N° de rue"}}) }}
+            </div>
+            <div class="col-10">
+                {{ form_row(formPrefecture.adressePrefecture, {'label': "Adresse :", 'attr': {'placeholder':
+                "Adresse"}}) }}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                {{ form_row(formPrefecture.communePrefecture, {'label': "Commune :", 'attr': {'placeholder':
+                    "Commune"}}) }}
+                <div id="selectPrefecture" class="listeHidden"></div>
+            </div>
+            <div class="col-4">
+                {{ form_row(formPrefecture.prefectureAutorite, {'label': 'Autorité de la préfecture', 'attr':
+                {'placeholder': 'Autorité de la préfecture'} }) }}
+                <button type="button" id="addAutoritePrefecture" class="btn btn-success tribunal_add" data-toggle="modal"
+                    data-target="#modalCartAutoritePrefecture">
+                    +
+                </button>
+            </div>
+            <div class="col-3">
+                {{ form_row(formPrefecture.prefectureService, {'label': 'Service de la préfecture', 'attr': {'placeholder': 'Service de la préfecture'} }) }}
+                {{ form_errors(formPrefecture) }}
+            </div>
+            <div class="col-1">
+                <button type="button" id="addServicePrefecture" class="btn btn-success tribunal_add" data-toggle="modal"
+                    data-target="#modalCartServicePrefecture">
+                    +
+                </button>
+            </div>
+        </div>
+
+
+        {% if editMode %}
+            <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+                Modifier
+            </button>
+        {% else %}
+            <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+                Enregistrer
+            </button>
+        {% endif %}
+
+
+        {{ form_end(formPrefecture) }}
+
+        <!-- Modal: modalCart -->
+        <div class="modal fade" id="modalCartServicePrefecture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Ajouter un service</h4>
+                        <button type="button" class="close3" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">X</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body"></div>
+                    <div class="text-danger text-center pb-3" id="errorServicePrefecture"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal: modalCart -->
+
+        <!-- Modal: modalCart -->
+        <div class="modal fade" id="modalCartAutoritePrefecture" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Ajouter une autorité</h4>
+                        <button type="button" class="close4" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body"></div>
+                    <div class="text-danger text-center pb-3" id="errorAutoritePrefecture"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal: modalCart -->
+    </div>
+
+{% endblock %}
+{% block selectjs %}
+    <script src="{{ asset('build/select.js') }}"></script>
+ {% endblock %}

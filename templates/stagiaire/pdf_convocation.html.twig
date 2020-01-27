@@ -1,0 +1,182 @@
+<head>
+    <style>
+        body {
+            font-size: 13px;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 10px;
+            text-align: center;
+            width: 50%;
+        }
+        td {
+            padding: 10px;
+            text-align: left;
+            width: auto;
+        }
+
+        table {
+            margin-left: 10px;
+            width: 90%;
+        }
+
+        img {
+            height: 100px;
+            border-collapse: collapse;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        h5 {
+            text-align: right;
+            font-size: 15px;
+        }
+
+        p {
+            text-align: left;
+        }
+
+        ul,
+        li {
+            padding-left: 25px;
+            padding-top: 5px;
+            text-align: left;
+            margin-right: 17px;
+        }
+    </style>
+</head>
+{% block body %}
+<img src="./build/static/logo.png" alt="Logo AFER">
+{% for participation in stagiaire.participations %}
+<div STYLE="padding-top: 50px; float: right;">Besançon, le
+    {{ participation.dateInscription|localizeddate('long', 'none', 'fr')}}</div>
+{% endfor %}
+<hr>
+<h5>
+    {{ stagiaire.civilite.nomCivilite }} {{stagiaire.prenomStagiaire}} {{stagiaire.nomStagiaire}}<br>
+    {{ stagiaire.numeroAdresseStagiaire }}, {{ stagiaire.adresseStagiaire }}<br>
+    {{ stagiaire.communeStagiaire }}</h5>
+
+<h4>Objet : Convocation à un stage de Sécurité Routière</h4>
+
+<p>{{ stagiaire.civilite.nomCivilite }},</p><br>
+{% for participation in stagiaire.participations %}
+<p>Vous vous êtes inscrit au stage, cité en objet, qui se déroulera les
+    <b>{{ participation.stage.dated|localizeddate('short', 'none', 'fr')}}</b> et
+    <b>{{ participation.stage.datef|localizeddate('short', 'none', 'fr')}}</b> à l'adresse suivante : <br>
+    <b>{{ participation.stage.lieustage.nomEtablissement }}, {{ participation.stage.lieustage.numeroAdresseStage }}
+        {{ participation.stage.lieustage.adresseStage }}, {{ participation.stage.lieustage.nomCommune }}</b>.</p>
+{% endfor %}
+<p>Vous trouverez en pièce jointe, les renseignements pratiques ayant trait à son déroulement. <br>
+    Ce stage a pour objectif de vous permettre de mieux appréhender les comportements liés à la conduite automobile par
+    une information, une réflexion individuelle et collective portant sur :
+    <ul style="list-style-type:disc;">
+        <li>l’accidentologie routière dans l’hexagone,</li>
+        <li>les facteurs majeurs d'accidents,</li>
+        <li>les comportements, les conséquences possibles, la prise de risque, les idées reçues.</li>
+    </ul>
+</p> <br>
+<p>A l'issue de ces deux journées, vous recevrez une attestation vous permettant de répondre aux impératifs légaux.</p>
+<p>Nous restons à votre disposition pour répondre aux questions que ce courrier pourrait générer.</p>
+<p>Veuillez agréer, {{ stagiaire.civilite.nomCivilite }}, l'expression de nos sentiments distingués.</p>
+
+<div STYLE="text-align: right; padding-right:10px">
+    <p STYLE="text-align: right; padding-right:35px">Le Directeur des Stages</p>
+    <p STYLE="text-align: right; padding-right:40px">Georges WARNIER</p>
+    <img src="./build/static/signature.svg" alt="Signature AFER">
+</div>
+
+<section STYLE="padding-top: 145px">
+    <img src="./build/static/logo.png" alt="Logo AFER">
+    <h3><SPAN STYLE="text-transform: uppercase">Informations pratiques</SPAN></h3>
+
+    <p STYLE="padding-top: 45px">Horaires : 8:30 à 12:15 et 13:15 à 16:30</p>
+    {% for participation in stagiaire.participations %}
+    <p>Dates du stage : {{ participation.stage.dated|localizeddate('short', 'none', 'fr')}} et
+        {{ participation.stage.datef|localizeddate('short', 'none', 'fr')}}</p>
+    <p>Lieu : {{ participation.stage.lieustage.nomEtablissement }},
+        {{ participation.stage.lieustage.numeroAdresseStage }} {{ participation.stage.lieustage.adresseStage }},
+        {{ participation.stage.lieustage.nomCommune }}</p>
+
+    <ul style="list-style-type:square;">
+        <li>La prise de repas est libre.</li>
+        <li>Il est nécessaire de prendre en compte les conditions climatiques et les travaux sur Besançon et Pontarlier.
+            <br>
+            Nous vous remercions de prendre vos dispositions en ce sens. En cas de retard
+            supérieur à 10 minutes, vous ne pourrez être admis en stage.</li>
+    </ul>
+
+    <h5 STYLE="text-align: left;"><u>Objectifs du stage</u></h5>
+    <p>Ce dernier a, autour d’un contenu interactif, vocation à faire évoluer la réflexion sur les idées reçues, les
+        comportements habituellement observés et les modes opératoires de conduite, individuels et collectifs.
+        L’environnement dans lequel évoluent les usagers de la route se caractérise par le partage avec des
+        individus ayant des aptitudes, et des motivations différenciées.</p>
+    <h5 STYLE="text-align: left;"><u>Déroulement</u></h5>
+    <p>Effectué sur 2 jours, il se compose, de discussions et d’échanges, de témoignages, d’analyse de cas
+        d’accidents, d’informations objectives sur les aspects dynamiques du véhicule (tenue de route, freinage,
+        adhérence, etc.), de vidéos.</p>
+
+    <div>
+        <div
+            STYLE="padding-left: 15px; float:left; height: 150px; width: 280px; border: solid;border-width: 1px; border-color: black;">
+        </div>
+        <div
+            STYLE="padding-right: 15px; float:right; height: 150px; width: 280px; border: solid;border-width: 1px; border-color: black;">
+        </div>
+    </div>
+
+    <h5 STYLE="padding-top: 105px; text-align: left;"><u>Modalités administratives</u></h5>
+    <p STYLE="text-align: center;"><SPAN STYLE="color:red; font-size: 14px;"><b>Le stagiaire devra impérativement
+                présenter une pièce d’identité, lors des formalités administratives (CNI ou Passeport).</b></SPAN></p>
+
+    <h3 STYLE="padding-top: 115px; text-align: center;"><SPAN STYLE="text-transform: uppercase">Informations
+            pratiques</SPAN></h3>
+
+    <h5 STYLE="text-align: left;"><u>Plan pour accéder au site :</u></h5>
+    <img STYLE="padding-top: 80px; padding-bottom: 0px; height: 300px; margin-left:5px;"
+        src="https://www.mapquestapi.com/staticmap/v5/map?key=HhCz5fkLH9CjS1od0OgIJ5dJJkH6HYAG&locations={{ participation.stage.lieustage.latitude }},{{ participation.stage.lieustage.longitude }}&banner={{ participation.stage.lieustage.nomEtablissement }}&zoom=17&size=810,400&type=map">
+
+    <h5 STYLE="text-align: left;"><u>Repas et Hébergement :</u></h5>
+    <p>Les repas et l’hébergement sont libres.</p>
+    <p>Plusieurs points de restauration existent néanmoins à proximité du lieu où se déroule le stage.</p>
+
+
+    <h5 STYLE="text-align: left;"><u>Coordonnés GPS :</u></h5>
+
+    <table class="table">
+        <tbody>
+            <tr>
+
+                <th align="left">DMS</th>
+                <th align="left">Décimaux</th>
+            </tr>
+            <tr>
+                <td>Latitude {{ participation.stage.lieustage.dmsLatitude }}</td>
+                <td>Latitude {{ participation.stage.lieustage.latitude }}</td>
+
+            </tr>
+             <tr>
+                <td>Longitude {{ participation.stage.lieustage.dmsLongitude }}</td>
+                <td>Longitude {{ participation.stage.lieustage.longitude }}</td>
+
+            </tr>
+
+        </tbody>
+    </table>
+    {% endfor %}
+
+ 
+</section>
+{% endblock %}

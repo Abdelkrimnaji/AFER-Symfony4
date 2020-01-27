@@ -1,0 +1,268 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    {{ form_start(formStagiaire) }}
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_stagiaire">Modifier un stagiaire</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_stagiaire">Ajouter un stagiaire</h2>
+        {% endif %}
+    </div>
+    <div class="text-center mb-2">
+        {% if error is defined %}
+        <h4 class="text-danger">Le stagiaire existe déjà</h4>
+        {% endif %}
+    </div>
+
+    <h3>Coordonnées</h3>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStagiaire.civilite, {'label': "Civilité :", 'attr': {'placeholder':
+            "Civilité"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.nationaliteStagiaire, {'label': "Nationalité :", 'attr': {'placeholder': "Nationalité"}})
+            }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStagiaire.nomStagiaire, {'label': "Nom :", 'attr': {'placeholder':
+            "Nom"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.prenomStagiaire, {'label': "Prénom :", 'attr': {'placeholder': "Prénom"}})}}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.nomNaissanceStagiaire, {'label': "Nom de naissance :", 'attr': {'placeholder': "Nom de naissance"}})
+            }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStagiaire.dateNaissanceStagiaire, {'label': "Date de naissance :", 'attr': {'placeholder': "Date de naissance"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.lieuNaissanceStagiaire, {'label': "Lieu de naissance :", 'attr': {'placeholder': "Lieu de naissance"}})
+            }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStagiaire.numeroAdresseStagiaire, {'label': "N° de rue :", 'attr': {'placeholder': "N° de rue"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.adresseStagiaire, {'label': "Adresse :", 'attr': {'placeholder': "Adresse"}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStagiaire.communeStagiaire, {'label': "Commune :", 'attr': {'placeholder': "Commune"}}) }}
+            <div id="selectStagiaire" class="listeHidden"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formStagiaire.numeroPortableStagiaire, {'label': "N° de portable :", 'attr': {'placeholder': "ex.: 9999999999"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.numeroFixeStagiaire, {'label': "N° de fixe :", 'attr': {'placeholder': "ex.: 9999999999"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(formStagiaire.emailStagiaire, {'label': "Email :", 'attr': {'placeholder': "Ex.: jean.dupont@afer.fr"}})
+            }}
+        </div>
+    </div>
+    <h3 id="avantage" class=" ">Avantage</h3>
+    <div class="flex-row ">
+            {{ form_row(formStagiaire.avantage) }}
+        </div>
+      
+  
+   
+    <h3 id="licence">Permis de conduire</h3>
+     
+    <div class="row d-flex align-items-center justify-content-start"> 
+      {% if stagiaire.licence is not null %}
+        <div class="hidden">
+       {{ form_widget(formStagiaire.licence, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+        
+          <table class="table table-striped">
+           
+            <thead>
+                <tr>
+                    <th scope="col" class="pl-5 text-left">Numéro de permis</th>
+                    <th scope="col" class="text-left">attribué le</th>
+                    <th scope="col" class="text-left">par</th>
+                    <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+                    </tr>
+                     </thead>
+        <tbody>
+                    <tr>
+                    <td class="pl-5 text-left">{{ stagiaire.licence.licenceNumber }}</td>
+                    <td class="text-left">{{ stagiaire.licence.licenceDate|localizeddate('long', 'none', 'fr')}}</td>
+                 <td class="text-left"> {{ stagiaire.licence.prefecture }}</td>
+
+        <td class="text-center">
+               <a data-toggle="tooltip" data-placement="top" title="Modifier le permis de conduire"
+            href="{{  path('licence_modifier', {'id': stagiaire.licence.id}) }}"><i
+                class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+        {# <a data-toggle="modal" data-target="#licenceDelete{{ stagiaire.licence.id }}" data-placement="top"
+            title="Supprimer le permis" href="#"><i class="far fa-trash-alt trash_color"></i></a></td> #}
+ </tr> 
+ <tbody>
+ </table>
+        
+         {% else %} 
+         
+        <div class="col-4">
+            <button type="button" id="addLicence" class="btn btn-success" data-toggle="modal"
+                data-target="#modalLicence">
+                Ajouter le permis de conduire
+            </button>
+        </div>
+         <div class="col-4">
+         {{ form_row(formStagiaire.licence) }}
+        </div>
+         {% endif %} 
+   </div>
+
+     <h3 id="infraction">Infraction</h3>
+    
+    <div class="row d-flex align-items-center justify-content-start">
+     {% if stagiaire.infraction is not null %}  
+               <div class="hidden">
+                 {{ form_widget(formStagiaire.infraction, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+       <table class="table table-striped">
+           
+            <thead>
+                <tr>
+                    <th scope="col" class="pl-5 text-left">Infraction commise à </th>
+                    <th scope="col" class="text-left">le</th>
+                    <th scope="col" class="text-left">Nature de l'infraction</th>
+                    <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+                    </tr>
+                     </thead>
+        <tbody>
+                    <tr>
+                    <td class="pl-5 text-left">{{ stagiaire.infraction.lieuInfraction }}</td>
+                    <td class="text-left">{{ stagiaire.infraction.dateInfraction|localizeddate('long', 'none', 'fr')}}</td>
+                 <td class="text-left">{{ stagiaire.infraction.natureInfraction }}</td>
+ <td class="text-center">
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier l'infraction"
+            href="{{  path('infraction_modifier', {'id': stagiaire.infraction.id}) }}"><i
+                class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+        {# <a data-toggle="modal" data-target="#licenceDelete{{ stagiaire.infraction.id }}" data-placement="top"
+            title="Supprimer le permis" href="#"><i class="far fa-trash-alt trash_color"></i></a></td> #}
+ </tr> 
+ <tbody>
+ </table>
+  
+                  {% else %}   
+             
+         <div class="col-4">
+            <button type="button" id="addInfraction" class="btn btn-success" data-toggle="modal"
+                data-target="#modalInfraction">
+                Ajouter une infraction
+            </button> 
+             </div>
+            <div class="col-4">
+          {{ form_row(formStagiaire.infraction) }}  
+                </div> 
+      
+        {% endif %}   
+     </div> 
+
+  <h3 id="Stage">Stage</h3>
+    
+    <div class="row d-flex align-items-center justify-content-start">
+ {{ form_row(formStagiaire.stage) }} 
+ </div> 
+
+
+    <h3 id="typeStage" class=" ">Type de stage</h3>
+    <div class="flex-row ">
+       
+            {{ form_row(formStagiaire.cas) }}
+        
+    </div>
+    
+{% if editMode %}
+<button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+    Modifier
+</button>
+{% else %}
+<button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+    Enregistrer
+</button>
+{% endif %}
+
+{{ form_end(formStagiaire) }}
+ </div> 
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalLicence" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter le permis</h4>
+                <button type="button" class="closeLicence" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorLicence"></div>
+        </div>
+        <!--Body-->
+    </div>
+</div>
+
+<div class="modal fade" id="modalInfraction" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter une infraction</h4>
+                <button type="button" class="closeInfraction" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="errorInfraction"></div>
+        </div>
+        <!--Body-->
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+<script>
+    $().ready(function () {
+        $('select.chzn-select').chosen();
+    });
+     $('select.stage-select').chosen({
+            placeholder_text_multiple: "Sélectionner un stage",
+            max_selected_options: 1,
+            no_results_text: "Le stage recherché n'est pas dans la liste !"
+        });
+</script>
+{% endblock %}
+{% block selectjs %}
+<script src="{{ asset('build/select.js') }}"></script>
+{% endblock %}
+

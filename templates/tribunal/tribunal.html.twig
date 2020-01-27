@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="tribunal">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="ml-5 h2_tribunal mt-5 mb-5">Liste des tribunaux</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('tribunal_ajouter')}}" class="btn mr-5 add_icon d-flex align-items-center">Ajouter</a>
+        {% endif %}
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_tribunal">
+                <th scope="col" class="pl-5 text-left">Tribunal</th>
+                <th scope="col" class="text-left">Commune</th>
+                <th scope="col" class="text-left">Autorité</th>
+                <th scope="col" class="text-left">Service</th>
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tribunal in tribunals %}
+            <tr>
+                <td class="pl-5 text-left">{{ tribunal.nomTribunal }}</td>
+                <td class="text-left">{{ tribunal.communeTribunal }}</td>
+                <td class="text-left">{{ tribunal.tribunalAutorite }}</td>
+                <td class="text-left">{{ tribunal.tribunalService }}</td>
+                <td class="text-center">
+
+                    <a data-toggle="tooltip" data-placement="top" title="Voir le tribunal" href="{{  path('tribunal_afficher', {'id': tribunal.id}) }}"><i
+                            class="far fa-eye eye_color"></i></a>
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier le tribunal" href="{{  path('tribunal_modifier', {'id': tribunal.id}) }}"><i
+                            class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+                    <a data-toggle="modal" data-target="#tribunalDelete{{ tribunal.id }}" data-placement="top" title="Supprimer le tribunal"
+                        href="#"><i class="far fa-trash-alt trash_color"></i></a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="tribunalDelete{{ tribunal.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Attention !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Vous êtes sur le point de supprimer un tribunal
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <a href="{{  path('tribunal_supprimer', {'id': tribunal.id}) }}" class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </td>
+            </tr>
+                {% else %}
+                <td class="pl-5 text-left">Il n'y a aucun tribunal</td>
+                <td class="text-left">...</td>
+                <td class="text-left">...</td>
+                <td class="text-left">...</td>
+                <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+{% endblock %}

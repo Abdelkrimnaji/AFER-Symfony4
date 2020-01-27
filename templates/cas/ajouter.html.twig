@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_stage">Modifier un cas</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_stage">Ajouter un cas</h2>
+        {% endif %}
+    </div>
+
+    {{ form_start(formCas) }}
+  <div class="row">
+        <div class="col">
+            {{ form_row(formCas.numeroCas, {'label': "Numéro de cas :", 'attr': {'placeholder':
+            "Numéro de cas"}}) }}
+        </div>
+        </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formCas.intituleCas, {'label': "Intitulé :", 'attr': {'placeholder':
+            "Intitulé"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formCas.tarifs, {'label': "Tarif TTC:", 'attr': {'placeholder': "Tarif TTC"}})}}
+        </div>
+    </div>
+
+   
+    </div>
+
+   
+   
+   
+
+    {% if editMode %}
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% endif %}
+
+
+    {{ form_end(formCas) }}
+</div>
+
+{% endblock %}
+
+{% block selectjs %}
+    <script src="{{ asset('build/select.js') }}"></script>
+ {% endblock %}

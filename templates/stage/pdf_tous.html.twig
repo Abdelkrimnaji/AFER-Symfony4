@@ -1,0 +1,82 @@
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+ font-size:10;
+}
+th {
+  padding: 3px;
+  text-align: center;
+}
+td {
+  padding: 3px;
+  text-align: left;
+}
+table {
+  width: 100%;    
+  }
+  h2 {
+    text-align: center;
+  }
+   footer {
+                position: fixed; 
+                bottom: 0cm; 
+                left: 0cm; 
+                right: 0cm;
+                height: 2cm;
+
+                /** Extra personal styles **/
+
+                text-align: center;
+                line-height: 1.5cm;
+            }
+</style>
+</head>
+{% block body %}
+        <h2>Liste de tous les stages</h2>
+
+        <p class="ml-5 note">* - (P) = (Psychologue), (T) = (Technicien de la route)</p>
+     <table>
+    <thead>
+            <tr class="background_stage">
+                <th scope="col" class="text-center">Numéro de stage</th>
+                <th scope="col" class="text-center">Dates du stage</th>
+                <th scope="col" class="text-center">Lieu de stage</th>
+                <th scope="col" class="text-center">Animateurs *</th>
+               
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for stage in stages %}
+            <tr>
+                <td class="pl-5 text-left">{{ stage.numeroStage }}</td>
+                <td class="table-margin">
+               
+                 Du  {{ stage.dated|localizeddate('full', 'none', 'fr')}} <br>
+                 au {{ stage.datef|localizeddate('full', 'none', 'fr')}}     
+                            
+                </td>
+                <td class="text-left">
+
+                    {{ stage.lieuStage.nomEtablissement }}<br>
+{{ stage.lieuStage.numeroAdresseStage }}, {{ stage.lieuStage.AdresseStage }} {{ stage.lieuStage.nomCommune }}<p>
+                </td>
+               <td class="text-left">  
+                    {% for animateur in stage.animateurs %}
+                   <p>{{ animateur.prenomAnimateur }} {{ animateur.nomAnimateur }}, {% if animateur.animateurfonction.nom == 'Psychologue' %}
+                        (P)
+                        {% else %}
+                        (T)
+                        {% endif %}</p>
+                    {% endfor %}
+              </td>
+                
+
+              {% endfor %}
+           
+        </tbody>
+    </table>
+
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_stage">Modifier un lieu de stage</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_stage">Ajouter un lieu de stage</h2>
+        {% endif %}
+    </div>
+
+    {{ form_start(formLieuStage) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formLieuStage.nom_etablissement, {'label': "Nom de l'établissement :", 'attr': {'placeholder':
+            "Nom de l'établissement"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formLieuStage.agrement, {'label': "N° d'agrément :", 'attr': {'placeholder': "N°
+            d'agrément"}})}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            {{ form_row(formLieuStage.numero_adresse_stage, {'label': "N° de rue :", 'attr': {'placeholder': "N° de
+            rue"}}) }}
+        </div>
+        <div class="col-10">
+            {{ form_row(formLieuStage.adresse_stage, {'label': "Adresse :", 'attr': {'placeholder': "Adresse"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formLieuStage.nom_commune, {'label': "Commune :", 'attr': {'placeholder': "Commune"}}) }}
+            <div id="select" class="listeHidden"></div>
+        </div>
+       <div class="col">
+            {{ form_row(formLieuStage.latitude, {'label': "Latitude Décimaux:", 'attr': {'placeholder': "Latitude Décimaux"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formLieuStage.longitude, {'label': "Longitude Décimaux:", 'attr': {'placeholder': "Longitude Décimaux"}}) }}
+        </div>
+         <div class="col">
+            {{ form_row(formLieuStage.dmsLatitude, {'label': "Latitude DMS:", 'attr': {'placeholder': "Latitude DMS"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formLieuStage.dmsLongitude, {'label': "Longitude DMS:", 'attr': {'placeholder': "Longitude DMS"}}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formLieuStage.telephone_stage, {'label': "N° de téléphone :", 'attr': {'placeholder': "N° de
+            téléphone"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formLieuStage.divers, {'label': "Divers :", 'attr': {'placeholder': "Divers"}}) }}
+            {{ form_errors(formLieuStage) }}
+        </div>
+    </div>
+
+    {% if editMode %}
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% endif %}
+
+
+    {{ form_end(formLieuStage) }}
+</div>
+
+{% endblock %}
+
+{% block selectjs %}
+    <script src="{{ asset('build/select.js') }}"></script>
+ {% endblock %}

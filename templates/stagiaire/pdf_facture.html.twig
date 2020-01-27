@@ -1,0 +1,172 @@
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            font-size: 20px;
+            text-align: right;
+            width: auto;
+        }
+
+        table {
+            margin-left: 10px;
+            width: 90%;
+        }
+
+        img {
+            height: 100px;
+           
+            border-collapse: collapse;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 30px;
+        }
+
+        p {
+            padding: 10px;
+            text-align: left;
+            font-size: 18px;
+        }
+
+        div{
+            padding-top: 50px;
+            float: right;
+        }
+    </style>
+</head>
+{% block body %}
+<img src="./build/static/logo.png" alt="Logo AFER">
+{% for participation in stagiaire.participations %}
+<div>Besançon, le {{ participation.dateFacture|localizeddate('long', 'none', 'fr')}}</div>
+<hr>
+
+<h3 align="center">FACTURE N° [ {{ participation.facture }}/{{ participation.createdAt|date('Y')}} ] </h3>
+{% endfor %}
+<p>
+    {{ stagiaire.civilite.nomCivilite }} {{stagiaire.prenomStagiaire}} {{stagiaire.nomStagiaire}}<br>
+    {{ stagiaire.numeroAdresseStagiaire }}, {{ stagiaire.adresseStagiaire }}<br>
+    {{ stagiaire.communeStagiaire }}</p>
+
+<p>Stage Sécurité Routière -
+    {% for participation in stagiaire.participations %}
+    Du {{ participation.stage.dated|localizeddate('full', 'none', 'fr')}} au {{ participation.stage.datef|localizeddate('full', 'none', 'fr')}}
+   
+
+<p>Avantages :
+    {{ stagiaire.avantage.avantage}}</p>
+
+{% if stagiaire.avantage.avantage == 'Aucun' %}
+
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            
+            <td align="left">{{ participation.cas.numeroCas}} </td>
+            <td align="left">{{ participation.cas.intituleCas}}</td>
+        </tr>>
+        <tr>
+            <td>Montant HT :</td>
+            <td>{{ participation.cas.tarifs.montantHt|localizedcurrency('EUR')}}</td>
+
+        </tr>>
+        <tr>
+            <td>TVA :</td>
+            <td>{{ participation.cas.tarifs.tva|localizedcurrency('EUR')}}</td>
+
+        </tr>>
+        <tr>
+            <td>Montant TTC :</td>
+            <td>{{ participation.cas.tarifs.montantTtc|localizedcurrency('EUR')}}</td>
+            </td>
+
+        </tr>>
+    </tbody>
+</table>
+
+{% endif %}
+
+{% if stagiaire.avantage.avantage == 'Carte Avantages Jeune' %}
+
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+           
+            <td align="left">{{ participation.cas.numeroCas}} </td>
+            <td align="left">{{ participation.cas.intituleCas}}</td>
+        </tr>>
+        <tr>
+            <td class="font-weight-bold">Montant HT :</td>
+            <td class="text-right">
+                {{ "%participation.cas.tarifs.montantHt%"|replace({'%participation.cas.tarifs.montantHt%': '160'|localizedcurrency('EUR') }) }}
+            </td>
+
+        </tr>>
+        <tr>
+            <td class="font-weight-bold">TVA :</td>
+            <td class="text-right">
+                {{ "%participation.cas.tarifs.tva%"|replace({'%participation.cas.tarifs.tva%': '40'|localizedcurrency('EUR') }) }}</td>
+
+        </tr>>
+        <tr>
+            <td class="font-weight-bold">Montant TTC :</td>
+            <td class="text-right">
+                {{ "%participation.cas.tarifs.montantTtc%"|replace({'%participation.cas.tarifs.montantTtc%': '200'|localizedcurrency('EUR') }) }}
+            </td>
+            </td>
+
+        </tr>>
+    </tbody>
+</table>
+{% endif %}
+
+{% if stagiaire.avantage.avantage == 'Partenaire' or stagiaire.avantage.avantage == 'Adhérent'%}
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+           
+            <td align="left">{{ participation.cas.numeroCas}} </td>
+            <td align="left">{{ participation.cas.intituleCas}}</td>
+        </tr>>
+        
+        <tr>
+             <td class="font-weight-bold">Montant HT :</td>
+            <td class="text-right">
+                {{ "%participation.cas.tarifs.montantHt%"|replace({'%participation.cas.tarifs.montantHt%': '144'|localizedcurrency('EUR') }) }}
+            </td>
+
+        </tr>>
+        <tr>
+            <td class="font-weight-bold">TVA :</td>
+            <td class="text-right">
+                {{ "%participation.cas.tarifs.tva%"|replace({'%participation.cas.tarifs.tva%': '36'|localizedcurrency('EUR') }) }}
+            </td>
+
+        </tr>>
+        <tr>
+            <td class="font-weight-bold">Montant TTC :</td>
+            <td class="text-right">
+                {{ "%participation.cas.tarifs.montantTtc%"|replace({'%participation.cas.tarifs.montantTtc%': '180'|localizedcurrency('EUR') }) }}
+            </td>
+            </td> 
+
+
+
+
+        </tr>>
+    </tbody>
+</table>
+{% endif %}
+ {% endfor %}</p>
+{% endblock %}

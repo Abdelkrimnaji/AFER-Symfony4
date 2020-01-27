@@ -1,0 +1,52 @@
+<div class="container">
+
+    
+
+    {{ form_start(form) }}
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.lieuInfraction, {'label': "Lieu de l'infraction :", 'attr': {'placeholder':
+            "Lieu de l'infraction"}}) }}
+             <div id="selectInfraction" class="listeHidden"></div>
+        </div>
+         </div>
+        <div class="row">
+        <div class="col">
+            {{ form_row(form.dateInfraction.date, {'label': "Date et heure de l'infraction :", 'attr': {'placeholder': "Date et heure de l'infraction"}})}}
+        </div>
+          </div>
+        <div class="row">
+        <div class="col">
+            {{ form_row(form.dateInfraction.time, {'label': "Horaire de l'infraction :", 'attr': {'placeholder': "Horaire de l'infraction"}})}}
+        </div>
+         </div>
+<div class="row">
+        <div class="col-10">
+            {{ form_row(form.natureInfraction, {'label': "Nature de l'infraction :", 'attr': {'placeholder': "Nature"}}) }}
+        </div> 
+     <div class="col">
+            {{ form_row(form.dateCondamnation, {'label': "Date de la condamnation :", 'attr': {'placeholder': "Date de la condamnation"}})
+            }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.numeroParquet, {'label': "Numéro de parquet :", 'attr': {'placeholder': "Numéro de parquet"}})
+            }}
+        </div>
+        <div class="col">
+            {{ form_row(form.tribunal, {'label': "Tribunal :", 'attr': {'placeholder': "Tribunal"}})
+            }}
+        </div>
+    </div>
+
+   
+   
+   <button type="submit" class="btn btn-primary">Ajouter l'infraction</button>
+  
+
+
+    {{ form_end(form) }}
+</div> 
+

@@ -1,0 +1,82 @@
+<div class="container">
+
+    {{ form_start(form) }}
+
+     <div class="row">
+        <div class="col">
+            {{ form_row(form.civilite, {'label': "Civilité :", 'attr': {'placeholder':
+            "Civilité"}}) }}
+        </div>
+            <div class="col">
+            {{ form_row(form.nationaliteStagiaire, {'label': "Nationalité :", 'attr': {'placeholder': "Nationalité"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.nomStagiaire, {'label': "Nom :", 'attr': {'placeholder':
+            "Nom"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.prenomStagiaire, {'label': "Prénom :", 'attr': {'placeholder': "Prénom"}})}}
+        </div>
+        <div class="col">
+            {{ form_row(form.nomNaissanceStagiaire, {'label': "Nom de naissance :", 'attr': {'placeholder': "Nom de naissance"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.dateNaissanceStagiaire, {'label': "Date de naissance :", 'attr': {'placeholder': "Date de naissance"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.lieuNaissanceStagiaire, {'label': "Lieu de naissance :", 'attr': {'placeholder': "Lieu de naissance"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.numeroAdresseStagiaire, {'label': "N° de rue :", 'attr': {'placeholder': "N° de rue"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.adresseStagiaire, {'label': "Adresse :", 'attr': {'placeholder': "Adresse"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.communeStagiaire, {'label': "Commune :", 'attr': {'placeholder': "Commune"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.numeroPortableStagiaire, {'label': "N° de portable :", 'attr': {'placeholder': "N° de portable"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.numeroFixeStagiaire, {'label': "N° fixe :", 'attr': {'placeholder': "N° fixe"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.emailStagiaire, {'label': "Email :", 'attr': {'placeholder': "Email"}}) }}
+        </div>
+    </div>
+
+      <div class="hidden">
+                 {{ form_widget(form.stage, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+        <div class="hidden">
+                 {{ form_widget(form.licence, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+        <div class="hidden">
+                 {{ form_widget(form.infraction, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+        <div class="hidden">
+                 {{ form_widget(form.avantage, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+        <div class="hidden">
+                 {{ form_widget(form.cas, {'attr': {'class': 'hidden-row'} }) }}
+       </div>
+
+    <button type="submit" class="btn btn-primary">Ajouter le stagiaire</button>
+
+    {{ form_end(form) }}

@@ -1,0 +1,40 @@
+{{ form_start(form) }}
+
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.nomPrefecture, {'label': "Préfecture :", 'attr': {'placeholder':
+            "Préfecture"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.numeroAdressePrefecture, {'label': "N° de rue :", 'attr': {'placeholder':
+            "N° de rue"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.adressePrefecture, {'label': "Adresse :", 'attr': {'placeholder':
+            "Adresse"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.communePrefecture, {'label': "Commune :", 'attr': {'placeholder':
+            "Commune"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            {{ form_row(form.prefectureService, {'label':"Autorité de la préfecture", 'attr': {'placeholder':
+            "Autorité du tribunal"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.prefectureAutorite, {'label':"Service de la préfecture", 'attr': {'placeholder': "Service du
+            tribunal"}}) }}
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter une préfecture</button>
+    {{ form_end(form) }}
+</div>

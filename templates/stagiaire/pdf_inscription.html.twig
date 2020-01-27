@@ -1,0 +1,217 @@
+<head>
+    <style>
+        body {
+            font-size: 13px;
+            margin-right: 30px;
+            margin-left: 30px;
+        }
+
+        img {
+            height: 100px;
+            border-collapse: collapse;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            text-align: center;
+        }
+
+        h5 {
+            text-align: right;
+            font-size: 15px;
+        }
+
+        p {
+            text-align: left;
+        }
+
+        ul,
+        li {
+            padding-left: 25px;
+            padding-top: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+{% block body %}
+<img src="./build/static/logo.png" alt="Logo AFER">
+{% for participation in stagiaire.participations %}
+<div STYLE="padding-top: 50px; float: right;">Besançon, le
+    {{ participation.dateInscription|localizeddate('long', 'none', 'fr')}}</div>
+{% endfor %}
+<hr>
+<h5>
+    {{ stagiaire.civilite.nomCivilite }} {{stagiaire.prenomStagiaire}} {{stagiaire.nomStagiaire}}<br>
+    {{ stagiaire.numeroAdresseStagiaire }}, {{ stagiaire.adresseStagiaire }}<br>
+    {{ stagiaire.communeStagiaire }}</h5>
+
+<h4>Objet : Bulletin d’inscription et convocation stage Sécurité Routière</h4><br>
+
+<p>{{ stagiaire.civilite.nomCivilite }},</p><br>
+{% for participation in stagiaire.participations %}
+{% if participation.cas.numeroCas == 'Cas N°1' or participation.cas.numeroCas == 'Cas N°2' %}
+<p>Vous avez manifesté le souhait de participer à un stage de Sécurité Routière. Nous sommes en mesure de répondre
+    favorablement à votre demande.</p>
+{% else %}
+<p>Suite à une notification judiciaire, vous avez été condamné à participer à un stage de Sécurité
+    Routière au sein de notre organisme.</p>
+{% endif %}
+
+<p>Vous trouverez en pièce jointe un bulletin d’inscription. Nous vous prions de bien vouloir nous le retourner, <SPAN
+        STYLE="color:red; text-decoration:underline">sous cinq jours maximum</SPAN>, à l'adresse :</p>
+
+<p STYLE="text-align: center"><SPAN STYLE="color:red">Association Franc-Comtoise d’Éducation Routière<br>
+        7 Square Saint Amour<br>
+        25000 BESANCON</SPAN></p><br>
+
+<ul style="list-style-type:square;">
+    <li>Le bulletin complété et signé</li>
+    {% if participation.cas.numeroCas == 'Cas N°1' %}
+    <li>La copie de votre dernière notification de retrait de points (courrier précisant la dernière perte et le solde
+        de points de votre permis) ou de votre relevé intégral d'information (délivré en Préfecture)</li>
+    {% endif %}
+    {% if participation.cas.numeroCas == 'Cas N°2' %}
+    <li>La copie (Recto et Verso) de votre 48N (courrier précisant la dernière perte et le solde de
+        points de votre permis)</li>
+    {% endif %}
+    {% if participation.cas.numeroCas == 'Cas N°3' or participation.cas.numeroCas == 'Cas N°4' %}
+    <li>La <SPAN STYLE="text-decoration:underline">copie</SPAN> de la décision de justice est obligatoire.
+    </li>
+    <li>La copie de votre Carte Nationale d’Identité (Recto et Verso)</li>
+    {% else %}
+    <li>La copie du permis de conduite (Recto et Verso) ou du document attestant de la rétention ou de la suspension du
+        permis de conduire</li>
+    {% endif %}
+    <li>Votre règlement de {{ participation.cas.tarifs.montantTtc|localizedcurrency('EUR')}}
+</ul><br>
+{% if participation.cas.numeroCas == 'Cas N°1' or participation.cas.numeroCas == 'Cas N°2' %}
+<p>Nous vous adressons dans ce courrier la convocation. Toutefois cette dernière n'est valide qu'au retour des documents
+    et du règlement.</p>
+{% else %}
+<p>Nous vous adressons dans ce courrier, simultanément au bulletin d’inscription, la convocation.
+    Toutefois cette dernière ne sera valide qu'au retour des documents et du règlement.<br>
+    Dans le cas où les documents ne nous parviendraient pas dans les délais, nous ne sommes pas
+    en mesure de vous garantir que la place sera toujours disponible. Enfin dans le cas où vous ne
+    vous présentez ou ne réalisez le stage dans les délais, une lettre de carence sera
+    systématiquement adressée au tribunal de grande Instance.</p>
+{% endif %}
+{% endfor %}
+<p>N'hésitez pas à nous contacter en cas de difficultés ou pour toutes questions que ce courrier pourrait générer.<br>
+    Veuillez agréer, {{ stagiaire.civilite.nomCivilite }}, l'expression de nos sentiments distingués.</p>
+<div STYLE="text-align: right; padding-right:10px">
+    <p STYLE="text-align: right; padding-right:35px">Le Directeur des Stages</p>
+    <p STYLE="text-align: right; padding-right:40px">Georges WARNIER</p>
+    <img src="./build/static/signature.svg" alt="Signature AFER">
+</div>
+
+<p>PS : La récupération de 4 points est soumise à deux conditions : disposer d’un délai de 1 an minimum entre deux
+    stages ayant permis la récupération de points, et disposer d’un solde de points au moment de la formation compris
+    entre 1
+    et 8 (se référer à la dernière notification de la Préfecture).</p>
+<div style="page-break-after: always"></div>
+
+
+<img src="./build/static/logo.png" alt="Logo AFER">
+{% for participation in stagiaire.participations %}
+<div STYLE="padding-top: 50px; float: right;">Besançon, le
+    {{ participation.dateInscription|localizeddate('long', 'none', 'fr')}}</div>
+{% endfor %}
+<hr>
+<h5>
+    {{ stagiaire.civilite.nomCivilite }} {{stagiaire.prenomStagiaire}} {{stagiaire.nomStagiaire}}<br>
+    {{ stagiaire.numeroAdresseStagiaire }}, {{ stagiaire.adresseStagiaire }}<br>
+    {{ stagiaire.communeStagiaire }}</h5>
+
+<h3>BULLETIN D'INSCRIPTION</h3>
+
+<p STYLE="text-align: center"><SPAN STYLE="color:red">A RENVOYER sous 5 jours A L'ADRESSE SUIVANTE:<br>
+        Association Franc-Comtoise d’Education Routière<br>
+        7 Square Saint Amour 25000 Besançon<br>
+        Tél : 06.24.18.32.41</SPAN></p>
+
+{% for participation in stagiaire.participations %}
+{% if participation.cas.numeroCas == 'Cas N°1' or participation.cas.numeroCas == 'Cas N°2' %}
+<p STYLE="padding-top: 5px"><b>ETAT CIVIL</b></p>
+{% else %}
+<p STYLE="padding-top: 5px"><b>ETAT CIVIL <sup>(1)</sup></b></p>
+{% endif %}
+<p>Je soussigné (e) : Nom ........................................................ Prénom
+    ........................................................</p>
+<p STYLE="line-height: 75%">Nom de jeune fille ........................................................<br>
+    <p STYLE="line-height: 75%">Né (e) le ........../........../.................... à
+        ........................................................................................</p>
+    <p STYLE="line-height: 75%">Adresse
+        ................................................................................................................
+    </p>
+    <p STYLE="line-height: 75%">Code postal ........................................................ Ville
+        ........................................................</p>
+    <p STYLE="line-height: 75%">Téléphone ............................. Mobile ............................. Courriel
+        ..........................................................</p>
+    <p STYLE="line-height: 75%">Profession
+        ..................................................................................................................
+    </p>
+    {% if participation.cas.numeroCas == 'Cas N°1' or participation.cas.numeroCas == 'Cas N°2' %}
+    <p STYLE="padding-top: 5px"><b>PERMIS DE CONDUIRE <sup>(1)</sup></b></p>
+    <p>Délivré par la Préfecture (Sous-Préfecture) de .............................
+        Département..........................................................</p>
+    <p STYLE="line-height: 75%">Date ........../........../.................... Numéro
+        ..........................................................</p><br>
+    {% else %}
+    <p STYLE="padding-top: 5px"><b>INFORMATIONS <sup>(1)</sup></b></p>
+    <p>N° du permis de conduire : ............................. Délivré le : ............................. Par la
+        Préfecture de : .............................</p>
+    <p STYLE="line-height: 75%">Nature de l’infraction ............................. Date de l’infraction
+        ......../......../.......... Lieu de 'infraction .............................</p>
+    <p STYLE="line-height: 75%">Tribunal de ............................. Date de la condamnation
+        ........../........../.................... N° de parquet .............................</p><br>
+    {% endif %}
+
+    <p>Je m'inscris au stage organisé <b>{{ participation.stage.dated|localizeddate('full', 'none', 'fr')}}</b> et
+        <b>{{ participation.stage.datef|localizeddate('full', 'none', 'fr')}}</b> à <SPAN
+            STYLE="text-transform: uppercase"><b>{{ participation.stage.lieustage.nomCommune }}</b></SPAN>.</p>
+{% if participation.cas.numeroCas == 'Cas N°1' or participation.cas.numeroCas == 'Cas N°2' %}
+    <p STYLE="line-height: 75%">Je remplis toutes les conditions pour m’inscrire à un stage. Je déclare :</p>
+    <ul style="list-style-type:circle;">
+        <li>Avoir fait l'objet d'un retrait de points,</li>
+        <li>Disposer d’un solde de points qui n'est pas nul (au moins un point à la date du stage),</li>
+        <li>Ne pas avoir effectué de stage similaire dans un délai de moins d'un an révolu.</li>
+    </ul>
+
+    <div STYLE="margin-top: 15px">
+
+        Je vous prie de bien vouloir trouver ci-joint un chèque de <b>
+            {{ participation.cas.tarifs.montantTtc|localizedcurrency('EUR')}}</b>
+        à l'ordre de <b>«Association Franc-Comtoise d’Education Routière» (AFER)</b><sup>(2)</sup>
+    </div>
+    {% else %}
+    <p STYLE="line-height: 75%">J’adresse l’ensemble des pièces demandées :</p>
+    <ul style="list-style-type:circle;">
+        <li>Bulletin d’inscription,</li>
+        <li>Copie de la décision de justice,</li>
+        <li>Le règlement de {{ participation.cas.tarifs.montantTtc|localizedcurrency('EUR')}}</b>
+        à l'ordre de <b>«Association Franc-Comtoise d’Education Routière» (AFER) </b><sup>(2)</sup>.</li>
+    </ul><br>
+     {% endif %}
+    {% endfor %}
+    <p STYLE="margin-top: 15px">Fait à ................................................................ Le
+        ......../......../..........
+        (Faire précéder de la mention « <b>lu et approuvé</b> »)</p>
+    <p>Signature</p>
+
+    <p STYLE="font-size: 9px; margin-top: 30px">Les renseignements demandés sont indispensables à l’établissement de
+        l’attestation de stage.<br>
+        <sup>(1)</sup> Le permis est invalidé, c’est-à-dire annulé, lorsque le nombre de points retirés est égal ou
+        supérieur à 12.<br>
+        <sup>(2)</sup> En cas d’annulation par le stagiaire dans les 10 jours qui précèdent le stage, une somme de 45 €
+        restera acquise à l’association au titre d’une participation aux frais administratifs. Toute somme versée par 
+        le stagiaire restera acquise à l’association, si celui-ci ne se présente pas au stage pour lequel il a été convoqué 
+        et s’il ne participe à aucun autre stage dans les 12 mois suivant son inscription.<br><br>
+        Les informations recueillies font l'objet d'un traitement informatique destiné à assurer la gestion
+        administrative des stages.
+        Conformément à la loi «informatique et libertés» du 6 janvier 1978, vous bénéficiez d'un droit d'accès et de
+        rectification aux informations qui vous concernent.
+        Si vous souhaitez exercer ce droit et obtenir communication des informations vous concernant, veuillez-vous
+        adresser à l'adresse indiquée ci-dessous.</p>
+        <div style="page-break-after: always"></div>
+    {% endblock %}
