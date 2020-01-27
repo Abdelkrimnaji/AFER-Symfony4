@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="lieuStage">
+    <div class="d-flex justify-content-between align-items-end">
+        <h2 class="ml-5 h2_stage mt-5 ">Liste des lieux de stages</h2>
+        <a href="{{ path('lieuStage_ajouter')}}" class="btn mb-2 mr-5 add_icon d-flex align-items-center">Ajouter</a>
+    </div>
+    <div class="text-right">
+        <a data-toggle="tooltip" data-placement="top" title="Imprimer cette page" target="_blank"
+            href="{{ path('lieuStage_imprimer')}}" <i class="mr-5 fas fa-print print_icon"></i></a>
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_stage">
+                <th scope="col" class="pl-5 text-left">Nom de l'établissement</th>
+                <th scope="col" class="text-left">Adresse</th>
+                <th scope="col" class="text-left">N° de téléphone</th>
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lieuStage in lieuStages %}
+            <tr>
+                <td class="pl-5 text-left">{{ lieuStage.nomEtablissement }}</td>
+                <td class="text-left">
+                    {{ lieuStage.numeroAdresseStage }}, {{ lieuStage.AdresseStage }} <br>{{ lieuStage.nomCommune }}
+                    <p>
+                </td>
+                <td class="text-left">{{ lieuStage.telephoneStage }}</td>
+                <td class="text-center">
+                    <a data-toggle="tooltip" data-placement="top" title="Voir le lieu de stage"
+                        href="{{  path('lieuStage_afficher', {'id': lieuStage.id}) }}"><i
+                            class="far fa-eye eye_color"></i></a>
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier le lieu de stage"
+                        href="{{  path('lieuStage_modifier', {'id': lieuStage.id}) }}"><i
+                            class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+                    <a data-id="{{ lieuStage.id }}" data-placement="top" data-target="#lieuStageDelete"
+                        class="lieuStageDelete" title="Supprimer le lieu de stage"
+                        href="{{  path('stage_lieu_suppr_alert') }}"><i class="far fa-trash-alt trash_color"></i></a>
+                </td>
+            </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="lieuStageDelete" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Attention !</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Vous êtes sur le point de supprimer un lieu de stage.
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <a href="#" class="btn btn-danger">Confirmer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <td class="pl-5 text-left">Il n'y a aucun lieu de stage</td>
+            <td class="text-left">...</td>
+            <td class="text-left">...</td>
+            <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

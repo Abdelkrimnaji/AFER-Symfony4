@@ -1,0 +1,58 @@
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+{% block body %}
+
+<h2 align="center">Stagiaire {{stagiaire.prenomStagiaire}} {{stagiaire.nomStagiaire}}</h3>
+   
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td class="font-weight-bold">Nom :</td>
+                <td class="text-left">
+                    {{ stagiaire.civilite.nomCivilite }} {{stagiaire.prenomStagiaire}} {{stagiaire.nomStagiaire}}
+            </tr>
+            <tr>
+                <td class="text-left">Téléphone fixe : {{ stagiaire.numeroFixeStagiaire }}</td>
+                <td class="text-left">Téléphone portable : {{ stagiaire.numeroPortableStagiaire }}</td>
+            </tr>
+            <tr>
+                <td class="text-left">Email : </td>
+                <td class="text-left">{{ stagiaire.emailStagiaire }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Adresse :</td>
+                <td class="text-left">{{ stagiaire.numeroAdresseStagiaire }}, {{ stagiaire.adresseStagiaire }}
+                    {{ stagiaire.communeStagiaire }}</td>
+            </tr>
+                              
+            <tr>
+                      <td class="font-weight-bold">Avantages :
+                    {{ stagiaire.avantage.avantage}}</td>        
+                <td class="font-weight-bold">Cas :
+                {% for cas in stagiaire.cas %}
+                    {{ cas.numerocas}}</td>
+                    {% endfor %}
+            </tr>
+            
+        </tbody>
+    </table>
+    </section>
+    {% endblock %}

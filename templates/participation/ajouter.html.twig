@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    {{ form_start(formParticipation) }}
+
+    <div>
+        
+        <h2 class="mt-5 mb-5 h2_prefecture">Ajouter une autorité</h2>
+   
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formParticipation.stage, {'label': "Nom de l'autorité :", 'attr': {'placeholder': "Nom de l'autorité"}}) }}
+             {{ form_row(formParticipation.stagiaire, {'label': "Nom de l'autorité :", 'attr': {'placeholder': "Nom de l'autorité"}}) }}
+            {{ form_errors(formParticipation) }}
+        </div>
+    </div>
+
+   
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+    Enregistrer
+    </button>
+   
+
+
+    {{ form_end(formParticipation) }}
+</div>
+
+{% endblock %}

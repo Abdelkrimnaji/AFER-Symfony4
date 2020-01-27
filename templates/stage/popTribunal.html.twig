@@ -1,0 +1,39 @@
+{{ form_start(form) }}
+
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.nom_tribunal, {'label': "Tribunal :", 'attr': {'placeholder':
+            "Tribunal"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(form.numero_adresse_tribunal, {'label': "N° de rue :", 'attr': {'placeholder':
+            "N° de rue"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.adresse_tribunal, {'label': "Adresse :", 'attr': {'placeholder':
+            "Adresse"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.commune_tribunal, {'label': "Commune :", 'attr': {'placeholder':
+            "Commune"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col">
+            {{ form_row(form.tribunal_autorite, {'label':"Autorité du tribunal", 'attr': {'placeholder':
+            "Autorité du tribunal"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(form.tribunal_service, {'label':"Service du tribunal", 'attr': {'placeholder': "Service du
+            tribunal"}}) }}
+        </div>
+    </div>
+
+        <button type="submit" class="btn btn-primary">Ajouter un tribunal</button>
+    {{ form_end(form) }}

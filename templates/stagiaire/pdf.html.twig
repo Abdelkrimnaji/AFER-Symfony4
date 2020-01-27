@@ -1,0 +1,82 @@
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+ font-size:10;
+}
+th {
+  padding: 3px;
+  text-align: center;
+}
+td {
+  padding: 3px;
+  text-align: left;
+}
+table {
+  width: 100%;    
+  }
+  h2 {
+    text-align: center;
+  }
+   footer {
+                position: fixed; 
+                bottom: 0cm; 
+                left: 0cm; 
+                right: 0cm;
+                height: 2cm;
+
+                /** Extra personal styles **/
+
+                text-align: center;
+                line-height: 1.5cm;
+            }
+</style>
+</head>
+{% block body %}
+        <h2>Liste des stagiaires</h2>
+
+  
+     <table>
+    <thead>
+            <tr class="background_stagiaire">
+                <th scope="col" class="pl-5 text-left">Nom</th>
+                <th scope="col" class="text-left">Prénom</th>
+                <th scope="col" class="text-left">Email</th>
+                <th scope="col" class="text-left">N° de portable</th>
+                <th scope="col" class="text-left">N° fixe</th>
+                <th scope="col" class="text-left">Cas</th>
+                <th scope="col" class="text-left">Nbre de stages</th>
+               
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for stagiaire in stagiaires %}
+            <tr>
+                <td class="pl-5 text-left">{{ stagiaire.nomStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.prenomStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.emailStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.numeroPortableStagiaire }}</td>
+                <td class="text-left">{{ stagiaire.numeroFixeStagiaire}}</td>
+                {% if stagiaire.cas is not empty %}
+                {% for cas in stagiaire.cas %}
+                <td class="text-left">{{ cas.numeroCas }}</td>
+                {% endfor %}
+                {% else %}
+                <td class="text-left">Aucun cas défini</td>
+                {% endif %}
+                <td class="text-left">{{ stagiaire.stages|length}}</td>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
+{% block footer %}
+<script type="text/php">
+    if ( isset($dompdf) ) {
+        $font = Font_Metrics::get_font("helvetica", "bold");
+        $dompdf->page_text(72, 18, "Header: {PAGE_NUM} of {PAGE_COUNT}", $font, 6, array(0,0,0));
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,47 @@
+
+
+
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+table {
+  width: 100%;    
+  }
+</style>
+</head>
+{% block body %}
+        <h2 align = "center">Liste des animateurs/animatrices</h2>
+    
+   <table class="table table-striped">
+        <thead>
+            <tr class="background_animateur">
+                <th scope="col" class="pl-5 text-left">Nom</th>
+                <th scope="col" class="text-left">Prénom</th>
+                <th scope="col" class="text-left">Email</th>
+                <th scope="col" class="text-left">N° de portable</th>
+                <th scope="col" class="text-left">N° fixe</th>
+               </tr>
+        </thead>
+        <tbody>
+            {% for animateur in animateurs %}
+            <tr>
+                <td class="pl-5 text-left">{{ animateur.nomAnimateur }}</td>
+                <td class="text-left">{{ animateur.prenomAnimateur }}</td>
+                <td class="text-left">{{ animateur.emailAnimateur }}</td>
+                <td class="text-left">{{ animateur.numeroPortableAnimateur }}</td>
+                <td class="text-left">{{ animateur.numeroFixeAnimateur }}</td>
+
+                
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+{% endblock %}

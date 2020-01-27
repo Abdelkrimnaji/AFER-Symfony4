@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_stage">Modifier un tarif</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_stage">Ajouter un tarif</h2>
+        {% endif %}
+    </div>
+
+    {{ form_start(formTarif) }}
+  <div class="row">
+        <div class="col">
+            {{ form_row(formTarif.description, {'label': "Description :", 'attr': {'placeholder':
+            "Description"}}) }}
+        </div>
+        </div>
+    <div class="row">
+        <div class="col">
+            {{ form_row(formTarif.montantHt, {'label': "Montant hors taxe :", 'attr': {'placeholder':
+            "Montant hors taxe"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formTarif.tva, {'label': "Tva:", 'attr': {'placeholder': "TVA"}})}}
+        </div>
+         <div class="col">
+            {{ form_row(formTarif.montantTtc, {'label': "Montant TTC:", 'attr': {'placeholder': "Montant TTC"}})}}
+        </div>
+    </div>
+
+   
+    </div>
+
+   
+   
+   
+
+    {% if editMode %}
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% endif %}
+
+
+    {{ form_end(formTarif) }}
+</div>
+
+{% endblock %}
+
+{% block selectjs %}
+    <script src="{{ asset('build/select.js') }}"></script>
+ {% endblock %}

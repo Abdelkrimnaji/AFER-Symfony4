@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="tribunal">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="ml-5 h2_tribunal mt-5 mb-5">Liste des natures d'infraction</h2>
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ path('nature_infraction_ajouter')}}" class="btn mr-5 add_icon d-flex align-items-center">Ajouter</a>
+        {% endif %}
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_tribunal">
+                <th scope="col" class="pl-5 text-left">Nature d'infraction</th>
+               
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for natureInfraction in natureInfractions %}
+            <tr>
+                <td class="pl-5 text-left">{{ natureInfraction.nomInfraction }}</td>
+                
+                <td class="text-center">
+
+                   {% if is_granted('ROLE_ADMIN') %}
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier le nom de l'infraction" href="{{  path('nature_infraction_modifier', {'id': natureInfraction.id}) }}"><i
+                            class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+                    <a data-toggle="modal" data-target="#natureInfractionDelete{{ natureInfraction.id }}" data-placement="top" title="Supprimer le nom de l'infraction"
+                        href="#"><i class="far fa-trash-alt trash_color"></i></a>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="natureInfractionDelete{{ natureInfraction.id }}" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Attention !</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Vous êtes sur le point de supprimer une nature d'infraction
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                                    <a href="{{  path('nature_infraction_supprimer', {'id': natureInfraction.id}) }}" class="btn btn-danger">Confirmer</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                </td>
+            </tr>
+                {% else %}
+                <td class="pl-5 text-left">Il n'y a aucune nature d'infraction</td>
+                <td class="text-left">...</td>
+                <td class="text-left">...</td>
+                <td class="text-left">...</td>
+                <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+{% endblock %}

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="shortcut icon" href="#">
+        <title>{% block title %}AFER{% endblock %}</title>
+        {% block stylesheets %}
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+            integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Caveat|Signika|Viga" rel="stylesheet">
+        <link rel="icon" href="{{ asset('build/static/favicon.ico') }}">
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {% endblock %}
+    </head>
+
+    <body>
+        <main>
+            <div class="container-fluid">
+                <div class="row">
+                    <div
+                        class="col-2 col-sm-2 col-md-2 col-lg-3 col-xl-2 d-flex left_branding align-items-center justify-content-center position-fixed">
+                        <h1>AFER</h1>
+                    </div>
+                    <div
+                        class="col-10 col-sm-10 col-md-10 col-lg-9 col-xl-10 top_logout position-fixed d-flex align-items-center justify-content-end">
+                        <i class="fas fa-user-tie mr-2"></i>
+                        <p class="logout">Bonjour {{ app.user }}</p>
+                        <a href="{{ path('logout') }}" data-toggle="tooltip" data-placement="top"
+                            title="Se déconnecter"><i class="fas fa-sign-out-alt ml-2 mr-3"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+
+                    {# <----- Menu admin -----> #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-3 col-xl-2 left_nav position-fixed">
+                        <ul>
+                            <li class="mt-5 mb-5">
+                                <a href="{{ path('admin') }}"><i class="fab fa-microsoft"></i>À la une</a>
+                            </li>
+
+                            <li class="mb-5 onclick_stage">
+                                <a><i class="far fa-calendar-alt"></i>Stages</a>
+                                <i class="fas fa-angle-right ml-3 angle_red"></i>
+                                <ul class="ul_without_padding list_stages">
+                                    <li class="background_stage pt-2 pb-2">
+                                        <a href="{{ path('stage_index') }}" class="stage_hover active_stage_liste">Liste
+                                            des stages</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_red">
+                                    </li>
+                                    <li class="background_stage pt-2 pb-2">
+                                        <a href="{{ path('lieuStage_index') }}"
+                                            class="stage_hover active_lieu_stage">Lieux de stage</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_red">
+                                    </li>
+                                    <li class="background_stage pt-2 pb-2">
+                                        <a href="{{ path('cas_index') }}" class="stage_hover active_stage_cas">Cas</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="mb-5 onclick_stagiaire">
+                                <a class="turn_arrow_green"><i class="fas fa-users"></i>Stagiaires</a>
+                                <i class="fas fa-angle-right ml-4 angle_green"></i>
+                                <ul class="ul_without_padding list_stagiaires">
+                                    <li class="background_stagiaire pb-2 pt-2">
+                                        <a href="{{ path('stagiaire_index') }}"
+                                            class="stagiaire_hover active_stagiaire_liste">Liste
+                                            des stagiaires</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_green">
+                                    </li>
+                                    <li class="background_stagiaire pb-2 pt-2">
+                                        <a href="{{ path('avantage_index') }}"
+                                            class="stagiaire_hover active_stagiaire_avantage">Avantage</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="mb-5 onclick_animateur">
+                                <a class="turn_arrow_orange"><i class="fas fa-graduation-cap"></i>Animateurs</a>
+                                <i class="fas fa-angle-right ml-4 angle_orange"></i>
+                                <ul class="ul_without_padding list_animateurs">
+                                    <li class="background_animateur pb-2 pt-2">
+                                        <a href="{{ path('animateur_index') }}"
+                                            class="animateur_hover active_animateur_liste">Liste des animateurs</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_orange">
+                                    </li>
+                                    <li class="background_animateur pb-2 pt-2">
+                                        <a href="{{ path('animateurFonction_index') }}"
+                                            class="animateur_hover active_animateur_fonction">Fonctions</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_orange">
+                                    </li>
+                                    <li class="background_animateur pb-2 pt-2">
+                                        <a href="{{ path('animateurStatut_index') }}"
+                                            class="animateur_hover active_animateur_statut">Statuts</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+
+                            <li class="mb-5 onclick_prefecture">
+                                <a class="turn_arrow_purple"><i class="fas fa-address-card"></i>Préfectures</a>
+                                <i class="fas fa-angle-right ml-4 angle_purple"></i>
+                                <ul class="ul_without_padding list_prefectures">
+                                    <li class="background_prefecture pb-2 pt-2">
+                                        <a href="{{ path('prefecture_index') }}"
+                                            class="prefecture_hover active_prefecture_liste">Liste
+                                            des préfectures</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_purple">
+                                    </li>
+                                    <li class="background_prefecture pb-2 pt-2">
+                                        <a href="{{ path('prefectureAutorite_index') }}"
+                                            class="prefecture_hover active_prefecture_autorite">Autorités</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_purple">
+                                    </li>
+                                    <li class="background_prefecture pb-2 pt-2">
+                                        <a href="{{ path('prefectureService_index') }}"
+                                            class="prefecture_hover active_prefecture_service">Services</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            <li class="mb-5 onclick_tribunaux">
+                                <a class="turn_arrow_blue"><i class="fas fa-balance-scale"></i>Tribunaux</a>
+                                <i class="fas fa-angle-right ml-4 angle_blue"></i>
+                                <ul class="ul_without_padding list_tribunaux">
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('tribunal_index') }}"
+                                            class="tribunaux_hover active_tribunal_liste">Liste
+                                            des tribunaux</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_blue">
+                                    </li>
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('tribunalAutorite_index') }}"
+                                            class="tribunaux_hover active_tribunal_autorite">Autorités</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_blue">
+                                    </li>
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('tribunalService_index') }}"
+                                            class="tribunaux_hover active_tribunal_service">Services</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_blue">
+                                    </li>
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('nature_infraction_index') }}"
+                                            class="tribunaux_hover active_nature_infraction">Natures d'infraction</a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+
+                            <li>
+                                <a href="{{ path('utilisateur_index') }}"><i class="fas fa-key"></i>Utilisateurs</a>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {# <----- Fin menu admin -----> #}
+
+                    {# <----- Menu tribunaux -----> #}
+                    {% if is_granted('ROLE_TRIBUNAL') %}
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-3 col-xl-2 left_nav position-fixed">
+                        <ul>
+                            <li class="mt-5 mb-5">
+                                <a href="{{ path('stagiaire_index') }}"><i class="fas fa-users"></i>Stagiaires</a>
+                            </li>
+                            <li class="mb-5 onclick_tribunaux">
+                                <a class="turn_arrow_blue"><i class="fas fa-balance-scale"></i>Tribunaux</a>
+                                <i class="fas fa-angle-right ml-4 angle_blue"></i>
+                                <ul class="ul_without_padding list_tribunaux">
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('tribunal_index') }}"
+                                            class="tribunaux_hover active_tribunal_liste">Liste
+                                            des tribunaux</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_blue">
+                                    </li>
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('tribunalAutorite_index') }}"
+                                            class="tribunaux_hover active_tribunal_autorite">Autorités</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_blue">
+                                    </li>
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('tribunalService_index') }}"
+                                            class="tribunaux_hover active_tribunal_service">Services</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_blue">
+                                    </li>
+                                    <li class="background_tribunaux pb-2 pt-2">
+                                        <a href="{{ path('nature_infraction_index') }}"
+                                            class="tribunaux_hover active_nature_infraction">Natures d'infraction</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                    {# <----- Fin menu tribunaux -----> #}
+
+                    {# <----- Menu préfecture -----> #}
+                    {% if is_granted('ROLE_PREFECTURE') %}
+                    <div class="col-2 col-sm-2 col-md-2 col-lg-3 col-xl-2 left_nav position-fixed">
+                        <ul>
+                            <li class="mt-5 mb-5">
+                                <a href="{{ path('stagiaire_index') }}"><i class="fas fa-users"></i>Stagiaires</a>
+                            </li>
+                            <li class="mb-5 onclick_prefecture">
+                                <a class="turn_arrow_purple"><i class="fas fa-address-card"></i>Préfectures</a>
+                                <i class="fas fa-angle-right ml-4 angle_purple"></i>
+                                <ul class="ul_without_padding list_prefectures">
+                                    <li class="background_prefecture pb-2 pt-2">
+                                        <a href="{{ path('prefecture_index') }}"
+                                            class="prefecture_hover active_prefecture_liste">Liste
+                                            des préfectures</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_purple">
+                                    </li>
+                                    <li class="background_prefecture pb-2 pt-2">
+                                        <a href="{{ path('prefectureAutorite_index') }}"
+                                            class="prefecture_hover active_prefecture_autorite">Autorités</a>
+                                    </li>
+                                    <li>
+                                        <hr class="color_purple">
+                                    </li>
+                                    <li class="background_prefecture pb-2 pt-2">
+                                        <a href="{{ path('prefectureService_index') }}"
+                                            class="prefecture_hover active_prefecture_service">Services</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    {% endif %}
+                    {# <----- Fin menu préfecture -----> #}
+
+                    <div class="col-10 col-sm-10 col-md-10 col-lg-9 col-xl-10 main_content position-absolute">
+                        {% block body %}{% endblock %}
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- MDB core JavaScript -->
+        {# <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.1/js/mdb.min.js"></script> #}
+
+        <!-- Pugx jquery -->
+        {# <script src="https//cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script> #}
+        {# <script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-select2.js') }}"></script> #}
+
+        {% if is_granted('ROLE_ADMIN') %}
+        <script src="{{ asset('build/app.js') }}"></script>
+        {% endif %}
+
+        {% if is_granted('ROLE_TRIBUNAL') %}
+        ²
+        {% endif %}
+
+        {% if is_granted('ROLE_PREFECTURE') %}
+        <script src="{{ asset('build/prefecture.js') }}"></script>
+        {% endif %}
+
+        {% block javascripts %}{% endblock %}
+        {% block selectjs %}{% endblock %}
+        {% block chartjs %}{% endblock %}
+
+    </body>
+
+</html>

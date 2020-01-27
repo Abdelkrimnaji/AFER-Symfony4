@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+{{ form_row(form.nom) }}
+
+<button class="btn btn-success" type="submit">Ajouter l'autorité</button>
+
+    {% if error is defined %}
+        <p class="text-danger text-error-identifiant pt-3 envoi">Veuillez renseigner tous les champs!</p>
+    {% endif %}
+    
+{{ form_end(form) }}

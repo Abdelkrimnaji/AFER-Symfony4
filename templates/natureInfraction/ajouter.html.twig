@@ -1,0 +1,45 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container">
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_tribunal">Modifier le nom d'une infraction</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_tribunal">Ajouter le nom d'une infraction</h2>
+        {% endif %}
+    </div>
+    <div class="text-center">
+        {% if error is defined %}
+            <h4 class="text-danger">Le nom d'une infraction existe déjà</h4>
+        {% endif %}
+    </div>
+
+    {{ form_start(formNatureInfraction) }}
+
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formNatureInfraction.nomInfraction, {'label': "Nature de l'infraction :", 'attr': {'placeholder':
+            "Nom"}}) }}
+        </div>
+    </div>
+    
+    {% if editMode %}
+        <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Modifier
+        </button>
+    {% else %}
+        <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+        </button>
+    {% endif %}
+
+    {{ form_end(formNatureInfraction) }}
+</div>
+
+
+
+{% endblock %}

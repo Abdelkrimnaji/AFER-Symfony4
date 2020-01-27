@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="mt-5 container-fluid">
+    <div class="w-100 utilisateur_border">
+        <h2 class="text-center background_utilisateur pt-2 pb-2 lieustage_margin">Utilisateur - {{ users.prenomUser }} {{ users.nomUser }}</h2>
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td class="font-weight-bold">Nom d'utilisateur :</td>
+                    <td class="text-left">{{ users.username }}</td>
+                    <td></td>
+                    <td></td>
+                     </tr>
+                <tr>
+                   <td class="font-weight-bold">Nom :</td>
+                    <td class="text-left">{{ users.nomUser }}</td>
+                    <td class="font-weight-bold">Prénom :</td>
+                    <td class="text-left">{{ users.prenomUser }}</td>
+                </tr>
+                <tr>
+                    
+                    <td class="font-weight-bold">Email :</td>
+                    <td class="text-left">{{ users.email }}</td>
+                    <td class="font-weight-bold">Rôle :</td>
+                    <td class="text-left">
+                        {% for role in users.roles %}
+                        {{ role }}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ path('utilisateur_index') }}" class="btn retour lieustage_button mt-3">Retour</a>
+</div>
+
+{% endblock %}

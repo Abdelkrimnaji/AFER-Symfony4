@@ -1,0 +1,72 @@
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        table {
+            width: 100%;
+        }
+    </style>
+</head>
+{% block body %}
+{% if animateur.civilite.nomCivilite == 'Madame' %}
+<h2 align="center">Animatrice {{animateur.prenomAnimateur}} {{animateur.nomAnimateur}}</h2>
+{% else %}
+<h2 align="center">Animateur {{animateur.prenomAnimateur}} {{animateur.nomAnimateur}}</h3>
+    {% endif %}
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td class="font-weight-bold">Nom :</td>
+                <td class="text-left">
+                    {{ animateur.civilite.nomCivilite }} {{ animateur.nomAnimateur}} {{ animateur.prenomAnimateur }}
+                </td>
+            </tr>
+            <tr>
+                <td class="text-left">Téléphone fixe : {{ animateur.numeroFixeAnimateur }}</td>
+                <td class="text-left">Téléphone portable : {{ animateur.numeroPortableAnimateur }}</td>
+            </tr>
+            <tr>
+                <td class="text-left">Email : </td>
+                <td class="text-left">{{ animateur.emailAnimateur }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Adresse :</td>
+                <td class="text-left">{{ animateur.numeroRueAnimateur }}, {{ animateur.rueAnimateur }}
+                    {{ animateur.communeAnimateur }}, {{ animateur.regionAnimateur}}</td>
+            </tr>
+            <tr>
+                <td class="text-left">Statut : {{ animateur.animateurStatut}}</td>
+                {% if animateur.civilite.nomCivilite == 'Madame' and animateur.animateurFonction == 'Technicien de la route' %}
+                <td class="text-left">Fonction : Technicienne de la route</td>
+                {% else %}
+                <td class="text-left">Fonction : {{ animateur.animateurFonction}}</td>
+                {% endif %}
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Raison sociale : {{ animateur.raisonSocialeAnimateur }}</td>
+                <td class="font-weight-bold">Gestion technique administrative :
+                    {{ animateur.gtaAnimateur ? 'Oui' : 'Non'}}</td>
+            </tr>
+            <tr>
+                <td class="text-left">N° URSSAF : {{ animateur.urssafAnimateur }}</td>
+                <td class="text-left">N° SIRET : {{ animateur.siretAnimateur }}</td>
+            </tr>
+            <tr>
+                <td class="font-weight-bold">Observations :</td>
+                <td class="text-left">{{ animateur.observationsAnimateur }}</td>
+            </tr>
+        </tbody>
+    </table>
+    </section>
+    {% endblock %}

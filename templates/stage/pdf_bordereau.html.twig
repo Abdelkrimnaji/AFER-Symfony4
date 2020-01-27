@@ -1,0 +1,271 @@
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        th {
+            padding: 5px;
+            font-size: 14px;
+            text-align: center;
+            width: auto;
+        }
+
+        td {
+            padding: 5px;
+            font-size: 13px;
+            text-align: left;
+            width: auto;
+        }
+
+        table {
+            margin-left: 10px;
+            width: 90%;
+        }
+
+        img {
+            height: 100px;
+            border-collapse: collapse;
+            padding-bottom: 20px;
+        }
+
+        h3 {
+            font-size: 15px;
+            text-align: center;
+        }
+
+        p {
+            padding: 10px;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        div {
+            padding-top: 50px;
+
+        }
+    </style>
+</head>
+{% block body %}
+
+{% for participation in stage.participations %}
+{% if participation.stagiaire.infraction is not null %}
+<img src="./build/static/logo.png" alt="Logo AFER">
+<hr>
+
+
+
+<h3>BORDEREAU D'ENVOI</h3>
+
+{% if participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Vesoul" %}
+<p>{{ participation.stagiaire.infraction.tribunal.tribunalAutorite.nom }} <br>
+    {{ participation.stagiaire.infraction.tribunal.nomtribunal }}/{{ participation.stagiaire.infraction.tribunal.tribunalService.nom }}
+    <br>
+    {{ participation.stagiaire.infraction.tribunal.numeroAdresseTribunal }},
+    {{ participation.stagiaire.infraction.tribunal.adresseTribunal }} <br>
+    {{ participation.stagiaire.infraction.tribunal.communeTribunal }}</p>
+
+<p>Objet :Stage Sécurité Routière des {{ stage.dated|localizeddate('full', 'none', 'fr')}} et
+    {{ stage.datef|localizeddate('full', 'none', 'fr')}}
+</p>
+
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th colspan="3">Feuillet d'émargement des stagiaires</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nature du stage</th>
+            <th>NB</th>
+        </tr>
+        {% for participation in stage.participations %}
+        {% if participation.stagiaire.infraction is not null and participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Vesoul" %}
+        <tr>
+            <td>{{ participation.stagiaire.nomStagiaire }}</td>
+            <td>{{ participation.stagiaire.prenomStagiaire }}</td>
+            {% if participation.cas is not null %}
+            <td align="left">{{ participation.cas.intituleCas }} </td>
+            {% else %}
+            <td>Aucun</td>
+            {% endif %}
+            <td>1</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+{% if participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Besançon" %}
+<p>{{ participation.stagiaire.infraction.tribunal.tribunalAutorite.nom }} <br>
+    {{ participation.stagiaire.infraction.tribunal.nomtribunal }}/{{ participation.stagiaire.infraction.tribunal.tribunalService.nom }}
+    <br>
+    {{ participation.stagiaire.infraction.tribunal.numeroAdresseTribunal }},
+    {{ participation.stagiaire.infraction.tribunal.adresseTribunal }} <br>
+    {{ participation.stagiaire.infraction.tribunal.communeTribunal }}</p>
+
+<p>Objet :Stage Sécurité Routière des {{ stage.dated|localizeddate('full', 'none', 'fr')}} et
+    {{ stage.datef|localizeddate('full', 'none', 'fr')}}
+</p>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th colspan="3">Feuillet d'émargement des stagiaires</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nature du stage</th>
+            <th>NB</th>
+        </tr>
+        {% for participation in stage.participations %}
+        {% if participation.stagiaire.infraction is not null and participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Besançon" %}
+        <tr>
+            <td>{{ participation.stagiaire.nomStagiaire }}</td>
+            <td>{{ participation.stagiaire.prenomStagiaire }}</td>
+            {% if participation.cas is not null %}
+            <td align="left">{{ participation.cas.intituleCas }} </td>
+            {% else %}
+            <td>Aucun</td>
+            {% endif %}
+            <td>1</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+{% if participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Montbéliard" %}
+<p>{{ participation.stagiaire.infraction.tribunal.tribunalAutorite.nom }} <br>
+    {{ participation.stagiaire.infraction.tribunal.nomtribunal }}/{{ participation.stagiaire.infraction.tribunal.tribunalService.nom }}
+    <br>
+    {{ participation.stagiaire.infraction.tribunal.numeroAdresseTribunal }},
+    {{ participation.stagiaire.infraction.tribunal.adresseTribunal }} <br>
+    {{ participation.stagiaire.infraction.tribunal.communeTribunal }}</p>
+
+<p>Objet :Stage Sécurité Routière des {{ stage.dated|localizeddate('full', 'none', 'fr')}} et
+    {{ stage.datef|localizeddate('full', 'none', 'fr')}}
+</p>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th colspan="3">Feuillet d'émargement des stagiaires</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nature du stage</th>
+            <th>NB</th>
+        </tr>
+        {% for participation in stage.participations %}
+        {% if participation.stagiaire.infraction is not null and participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Montbéliard" %}
+        <tr>
+            <td>{{ participation.stagiaire.nomStagiaire }}</td>
+            <td>{{ participation.stagiaire.prenomStagiaire }}</td>
+            {% if participation.cas is not null %}
+            <td align="left">{{ participation.cas.intituleCas }} </td>
+            {% else %}
+            <td>Aucun</td>
+            {% endif %}
+            <td>1</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Belfort" %}
+<p>{{ participation.stagiaire.infraction.tribunal.tribunalAutorite.nom }} <br>
+    {{ participation.stagiaire.infraction.tribunal.nomtribunal }}/{{ participation.stagiaire.infraction.tribunal.tribunalService.nom }}
+    <br>
+    {{ participation.stagiaire.infraction.tribunal.numeroAdresseTribunal }},
+    {{ participation.stagiaire.infraction.tribunal.adresseTribunal }} <br>
+    {{ participation.stagiaire.infraction.tribunal.communeTribunal }}</p>
+
+<p>Objet :Stage Sécurité Routière des {{ stage.dated|localizeddate('full', 'none', 'fr')}} et
+    {{ stage.datef|localizeddate('full', 'none', 'fr')}}
+</p>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th colspan="3">Feuillet d'émargement des stagiaires</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nature du stage</th>
+            <th>NB</th>
+        </tr>
+        {% for participation in stage.participations %}
+        {% if participation.stagiaire.infraction is not null and participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Belfort" %}
+        <tr>
+            <td>{{ participation.stagiaire.nomStagiaire }}</td>
+            <td>{{ participation.stagiaire.prenomStagiaire }}</td>
+            {% if participation.cas is not null %}
+            <td align="left">{{ participation.cas.intituleCas }} </td>
+            {% else %}
+            <td>Aucun</td>
+            {% endif %}
+            <td>1</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+
+        {% if participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Lons le Saunier" %}
+<p>{{ participation.stagiaire.infraction.tribunal.tribunalAutorite.nom }} <br>
+    {{ participation.stagiaire.infraction.tribunal.nomtribunal }}/{{ participation.stagiaire.infraction.tribunal.tribunalService.nom }}
+    <br>
+    {{ participation.stagiaire.infraction.tribunal.numeroAdresseTribunal }},
+    {{ participation.stagiaire.infraction.tribunal.adresseTribunal }} <br>
+    {{ participation.stagiaire.infraction.tribunal.communeTribunal }}</p>
+
+<p>Objet :Stage Sécurité Routière des {{ stage.dated|localizeddate('full', 'none', 'fr')}} et
+    {{ stage.datef|localizeddate('full', 'none', 'fr')}}
+</p>
+<table class="table table-striped">
+    <tbody>
+        <tr>
+            <th colspan="3">Feuillet d'émargement des stagiaires</th>
+            <th>1</th>
+        </tr>
+        <tr>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Nature du stage</th>
+            <th>NB</th>
+        </tr>
+        {% for participation in stage.participations %}
+        {% if participation.stagiaire.infraction is not null and participation.stagiaire.infraction.tribunal.nomtribunal == "TGI Lons le Saunier" %}
+        <tr>
+            <td>{{ participation.stagiaire.nomStagiaire }}</td>
+            <td>{{ participation.stagiaire.prenomStagiaire }}</td>
+            {% if participation.cas is not null %}
+            <td align="left">{{ participation.cas.intituleCas }} </td>
+            {% else %}
+            <td>Aucun</td>
+            {% endif %}
+            <td>1</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+<h4 STYLE="text-align: center;">Transmis pour Attribution et Suites à donner</h4>
+<div STYLE="text-align: right; padding-right:10px">
+    <p STYLE="text-align: right; padding-right:35px">Le Directeur des Stages</p>
+    <p STYLE="text-align: right; padding-right:40px">Georges WARNIER</p>
+    <img src="./build/static/signature.svg" alt="Signature AFER">
+</div>
+
+<div style="page-break-after: always"></div>
+ {% endif %}
+{% endfor %}
+
+{% endblock %}

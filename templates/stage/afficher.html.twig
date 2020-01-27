@@ -1,0 +1,308 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="mt-5 container-fluid">
+   <div class="w-100 stage_border">
+      <h2 class="text-center background_stage pt-2 pb-2 stage_margin">Détails du stage n° {{ stage.numeroStage }}</span>
+      </h2>
+      <table class="table table-striped">
+         <tbody>
+
+            <tr>
+               <td>Numéro de stage :</td>
+               <td class="text-left">{{ stage.numeroStage }}</td>
+            </tr>
+            <tr>
+               <td>Date de début :</td>
+               <td class="text-left">{{ stage.dated|localizeddate('long', 'none', 'fr') }}</td>
+            </tr>
+            <tr>
+               <td>Date de fin :</td>
+               <td class="text-left">{{ stage.datef|localizeddate('long', 'none', 'fr') }}</td>
+            </tr>
+            <tr>
+               <td>Stage hors programme officiel :</td>
+               <td class="text-left">{{ stage.stageProgrammeOfficiel ?'Oui' : 'Non'}}</td>
+            </tr>
+         </tbody>
+      </table>
+
+
+
+      <section>
+         <h2 class="text-center background_stage pt-2 pb-2 stage_margin">Lieu de stage</h2>
+
+         <a href="#vue_lieuStage" class="btn btn_lieustage"
+            data-toggle="collapse">{{ stage.lieuStage.nomEtablissement }}</a>
+         <div id="vue_lieuStage" class="collapse info_lieuStage">
+
+            <div class="d-flex justify-content-center">
+               <table class="table table-striped">
+                  <tbody>
+                     <tr>
+                        <td class="font-weight-bold">Nom de l'établissement :</td>
+                        <td class="text-left">{{ stage.lieuStage.nomEtablissement }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° d'agrément :</td>
+                        <td class="text-left">{{ stage.lieuStage.agrement }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° de téléphone :</td>
+                        <td class="text-left">{{ stage.lieuStage.telephoneStage }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Adresse :</td>
+                        <td class="text-left">{{ stage.lieuStage.numeroAdresseStage }},
+                           {{ stage.lieuStage.adresseStage }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Commune :</td>
+                        <td class="text-left">{{ stage.lieuStage.nomCommune }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Latitude :</td>
+                        <td class="text-left">{{ stage.lieuStage.latitude }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Longitude :</td>
+                        <td class="text-left">{{ stage.lieuStage.longitude }}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+
+      </section>
+      {# <section>
+<h2  class="text-center background_stage pt-2 pb-2 stage_margin">Préfecture</h2>
+
+   <a href="#vue_prefecture" class="btn  stage_btn btn_prefecture" data-toggle="collapse">{{ stage.prefecture.nomPrefecture }}</a>
+   <div id="vue_prefecture" class="collapse info_prefecture">
+
+      <div class="d-flex justify-content-center">
+          <table class="table table-striped">
+            <tbody>
+                 <tr>
+                    <td class="font-weight-bold">Nom de la préfecture :</td>
+                    <td class="text-left">{{ stage.prefecture.nomPrefecture }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Autorité :</td>
+                    <td class="text-left">{{ stage.prefecture.prefectureAutorite }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Service :</td>
+                    <td class="text-left">{{ stage.prefecture.prefectureService }}</td>
+                </tr>
+    
+                <tr>
+                    <td class="font-weight-bold">Adresse :</td>
+                    <td class="text-left">{{ stage.prefecture.numeroAdressePrefecture }}, {{ stage.prefecture.adressePrefecture }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Commune :</td>
+                    <td class="text-left">{{ stage.prefecture.communePrefecture }}</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      </div>
+      
+</section>
+
+<section>
+<h2  class="text-center background_stage pt-2 pb-2 stage_margin">Tribunal</h2>
+
+   <a href="#vue_tribunal" class="btn btn_tribunal" data-toggle="collapse">{{ stage.tribunal.nomTribunal }}</a>
+   <div id="vue_tribunal" class="collapse info_tribunal">
+
+      <div class="d-flex justify-content-center">
+          <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <td class="font-weight-bold">Nom du tribunal :</td>
+                    <td class="text-left">{{ stage.tribunal.nomtribunal }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Autorité :</td>
+                    <td class="text-left">{{ stage.tribunal.tribunalAutorite }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Service :</td>
+                    <td class="text-left">{{ stage.tribunal.tribunalService }}</td>
+                </tr>
+    
+                <tr>
+                    <td class="font-weight-bold">Adresse :</td>
+                    <td class="text-left">{{ stage.tribunal.numeroAdresseTribunal }}, {{ stage.tribunal.adresseTribunal }}</td>
+                </tr>
+                <tr>
+                    <td class="font-weight-bold">Commune :</td>
+                    <td class="text-left">{{ stage.tribunal.communeTribunal }}</td>
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      </div>
+      
+</section> #}
+      <section>
+
+         <h2 class="text-center background_stage pt-2 pb-2 stage_margin">Animateurs</h2>
+         {% for animateur in stage.animateurs %}
+         <a href="#vue_animateur" class="btn btn_animateur" data-toggle="collapse">
+            {% if animateur.civilite.nomCivilite == 'Madame' and animateur.animateurFonction == 'Technicien de la route'%}
+
+            <td class="text-left">Technicienne de la route</td>
+            {% else %}
+
+            <td class="text-left">{{ animateur.animateurFonction}}</td>
+            {% endif %}</a>
+         <div id="vue_animateur" class="collapse info_animateur">
+
+            <div class="d-flex justify-content-center">
+               <table class="table table-striped">
+                  <tbody>
+
+
+                     <tr>
+                        <td class="font-weight-bold">Animateur : </td>
+                        <td class="text-left">{% if animateur.civilite.nomCivilite == 'Madame' %}
+                           Animatrice {{animateur.prenomAnimateur}} {{animateur.nomAnimateur}}</td>
+                        {% else %}
+                        Animateur {{animateur.prenomAnimateur}} {{animateur.nomAnimateur}}</td>
+                        {% endif %}
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° de portable :</td>
+                        <td class="text-left">{{ animateur.numeroPortableAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Email :</td>
+                        <td class="text-left">{{ animateur.emailAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Adresse :</td>
+                        <td class="text-left">{{ animateur.numeroRueAnimateur }}, {{ animateur.rueAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Commune :</td>
+                        <td class="text-left">{{ animateur.communeAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Région :</td>
+                        <td class="text-left">{{ animateur.regionAnimateur}}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Statut :</td>
+                        <td class="text-left">{{ animateur.animateurStatut}}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Fonction :</td>
+                        <td class="text-left">{{ animateur.animateurFonction}}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Raison sociale :</td>
+                        <td class="text-left">{{ animateur.raisonSocialeAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Gestion technique administrative :</td>
+                        <td class="text-left">{{ animateur.gtaAnimateur ? 'Oui' : 'Non'}}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° URSSAF :</td>
+                        <td class="text-left">{{ animateur.urssafAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° de SIRET :</td>
+                        <td class="text-left">{{ animateur.siretAnimateur }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Observations :</td>
+                        <td class="text-left">{{ animateur.observationsAnimateur }}</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         {% endfor %}
+      </section>
+
+
+      <section>
+         <h2 class="text-center background_stage pt-2 pb-2 stage_margin">Stagiaires</h2>
+
+         {% for participation in stage.participations %}
+
+         <a href="#vue_stagiaire" class="btn btn_stagiaire"
+            data-toggle="collapse">{{ participation.stagiaire.prenomStagiaire }}
+            {{ participation.stagiaire.nomStagiaire }}</a>
+
+         <div id="vue_stagiaire" class="collapse info_stagiaire">
+            <div class="d-flex justify-content-center">
+               <table class="table table-striped">
+                  <tbody>
+
+
+                     <tr>
+                        <td class="font-weight-bold">Nationalité :</td>
+                        <td class="text-left">{{ participation.stagiaire.nationaliteStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Nom :</td>
+                        <td class="text-left">{{ participation.stagiaire.prenomStagiaire }}
+                           {{ participation.stagiaire.nomStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° de fixe :</td>
+                        <td class="text-left">{{ participation.stagiaire.numeroFixeStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">N° de portable :</td>
+                        <td class="text-left">{{participation.stagiaire.numeroPortableStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Email :</td>
+                        <td class="text-left">{{ participation.stagiaire.emailStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Nom de naissance :</td>
+                        <td class="text-left">{{ participation.stagiaire.nomNaissanceStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Date de naissance :</td>
+                        <td class="text-left">
+                           {{ participation.stagiaire.dateNaissanceStagiaire|localizeddate('long', 'none', 'fr')}}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Lieu de naissance :</td>
+                        <td class="text-left">{{ participation.stagiaire.lieuNaissanceStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Adresse :</td>
+                        <td class="text-left">{{ participation.stagiaire.numeroAdresseStagiaire }},
+                           {{ participation.stagiaire.adresseStagiaire }}</td>
+                     </tr>
+                     <tr>
+                        <td class="font-weight-bold">Commune :</td>
+                        <td class="text-left">{{ participation.stagiaire.communeStagiaire }}</td>
+                     </tr>
+
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         {% endfor %}
+
+      </section>
+   </div>
+
+   <a href="{{ path('stage_emargement', {'id': stage.id}) }}" target="_blank" class="btn list stage_button mt-3">Feuille
+      d'émargement</a>
+   <a href="{{ path('stage_bordereau', {'id': stage.id}) }}" target="_blank"
+      class="btn bordereau stage_button mt-3">Bordereau d'envoi</a>
+   <a href="{{ path('stage_index') }}" class="btn retour stage_button mt-3">Retour</a>
+
+
+   {% endblock %}

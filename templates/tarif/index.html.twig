@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<section class="tarif">
+    <div class="d-flex justify-content-between align-items-end">
+        <h2 class="ml-5 h2_stage mt-5 ">Liste des tarif</h2>
+        <a href="{{ path('tarif_ajouter')}}" class="btn mb-2 mr-5 add_icon d-flex align-items-center">Ajouter</a>
+    </div>
+    {# <div class="text-right">
+        <a data-toggle="tooltip" data-placement="top" title="Imprimer cette page" target="_blank"
+            href="{{ path('tarif_imprimer')}}" <i class="mr-5 fas fa-print print_icon"></i></a>
+    </div> #}
+    <table class="table table-striped">
+        <thead>
+            <tr class="background_stage">
+                <th scope="col" class="pl-5 text-left">Description</th>
+                <th scope="col" class="text-left">Montant HT</th>
+                <th scope="col" class="text-left">TVA</th> 
+                 <th scope="col" class="text-left">Montant TTC</th>
+                <th scope="col" class="text-center"><i class="fas fa-cogs"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarif in tarifs %}
+            <tr>
+                <td class="pl-5 text-left">{{ tarif.description }}</td>
+                <td class="text-left">
+                    {{ tarif.montantHt }}
+                    <p>
+                </td>
+                <td class="text-left">{{ tarif.tva }}</td>
+                <td class="text-left">{{ tarif.montantTtc }}</td>
+                <td class="text-center">
+                    <a data-toggle="tooltip" data-placement="top" title="Voir le tarif"
+                        href="{{  path('tarif_afficher', {'id': tarif.id}) }}"><i
+                            class="far fa-eye eye_color"></i></a>
+                    <a data-toggle="tooltip" data-placement="top" title="Modifier le tarif"
+                        href="{{  path('tarif_modifier', {'id': tarif.id}) }}"><i
+                            class="fas fa-pen pen_color pl-2 pr-2"></i></a>
+                    <a data-id="{{ tarif.id }}" data-placement="top" data-target="#tarifDelete"
+                        class="tarifDelete" title="Supprimer le tarif"
+                        {# href="{{  path('tarif_suppr_alert') }}"><i class="far fa-trash-alt trash_color"></i></a> #}
+                </td>
+            </tr>
+            <!-- Modal -->
+            <div class="modal fade" id="tarifDelete" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Attention !</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Vous êtes sur le point de supprimer un tarif.
+                        </div>
+                        <div class="modal-footer d-flex justify-content-center">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+                            <a href="#" class="btn btn-danger">Confirmer</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <td class="pl-5 text-left">Il n'y a aucun tarif</td>
+            <td class="text-left">...</td>
+            <td class="text-left">...</td>
+            <td class="text-center">...</td>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

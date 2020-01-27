@@ -1,0 +1,186 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+
+    {{ form_start(formAnimateur) }}
+
+    <div>
+        {% if editMode %}
+        <h2 class="mt-5 mb-5 h2_animateur">Modifier un animateur</h2>
+        {% else %}
+        <h2 class="mt-5 mb-5 h2_animateur">Ajouter un animateur</h2>
+        {% endif %}
+    </div>
+    <div class="text-center">
+        {% if error is defined %}
+            <h4 class="text-danger">L'animateur existe déjà</h4>
+        {% endif %}
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formAnimateur.civilite, {'label': "Civilité :", 'attr': {'placeholder': "Civilité"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formAnimateur.nom_animateur, {'label': "Nom :", 'attr': {'placeholder': "Nom"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formAnimateur.prenom_animateur, {'label': "Prénom :", 'attr': {'placeholder': "Prénom"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2">
+            {{ form_row(formAnimateur.numero_rue_animateur, {'label': "N° de rue :", 'attr': {'placeholder': "N° de
+            rue"}}) }}
+        </div>
+        <div class="col-10">
+            {{ form_row(formAnimateur.rue_animateur, {'label': "Adresse :", 'attr': {'placeholder': "Adresse"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+            <div class="col">
+                {{ form_row(formAnimateur.commune_animateur, {'label': "Commune :", 'attr': {'placeholder': "Commune"}}) }}
+                <div id="selectAnimateur" class="listeHidden"></div>          
+            </div>
+        <div class="col">
+            {{ form_row(formAnimateur.region_animateur, {'label': "Région :", 'attr': {'placeholder': "Région"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formAnimateur.email_animateur, {'label': "Email :", 'attr': {'placeholder': "Email"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formAnimateur.numero_portable_animateur, {'label': "N° de portable :", 'attr': {'placeholder':
+            "N° de téléphone portable"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formAnimateur.numero_fixe_animateur, {'label': "N° de fixe :", 'attr': {'placeholder': "N° de
+            téléphone fixe"}}) }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formAnimateur.siret_animateur, {'label': "N° SIRET :", 'attr': {'placeholder': "N° SIRET"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formAnimateur.urssaf_animateur, {'label': "N° URSSAF :", 'attr': {'placeholder': "N° URSSAF"}})
+            }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formAnimateur.raison_sociale_animateur, {'label': "Raison sociale :", 'attr': {'placeholder':
+            "Raison sociale"}}) }}
+        </div>
+        <div class="col">
+            {{ form_row(formAnimateur.gta_animateur, {'label': "Gestion technique et administrative :", 'attr':
+            {'placeholder': "Gestion technique et administrative"}})
+            }}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-5">
+            {{ form_row(formAnimateur.animateurFonction, {'label':"Fonction de l'animateur", 'attr': {'placeholder':
+            "Fonction animateur"}}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addFonctionAnimateur" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCart5">
+                +
+            </button>
+        </div>
+        <div class="col-5">
+            {{ form_row(formAnimateur.animateurStatut, {'label':"Statut de l'animateur", 'attr': {'placeholder':
+            "Statut
+            animateur"}}) }}
+        </div>
+        <div class="col-1">
+            <button type="button" id="addStatutAnimateur" class="btn btn-success tribunal_add" data-toggle="modal"
+                data-target="#modalCart6">
+                +
+            </button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            {{ form_row(formAnimateur.observations_animateur, {'label': "Observations :", 'attr': {'placeholder':
+            "Observations"}})}}
+            {{ form_errors(formAnimateur) }}
+        </div>
+    </div>
+
+    {% if editMode %}
+    <button type="submit" class="btn btn-warning btn-link text-black mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% else %}
+    <button type="submit" class="btn btn-success btn-link text-white mb-5 mt-3">
+        Enregistrer
+    </button>
+    {% endif %}
+
+    {{ form_end(formAnimateur) }}
+
+</div>
+
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCart5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter une fonction</h4>
+                <button type="button" class="close5" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="error5"></div>
+        </div>
+        <!--Body-->
+        <div class="modal-body"></div>
+        <div class="text-danger" id="error5"></div>
+    </div>
+</div>
+
+
+<!-- Modal: modalCart -->
+<div class="modal fade" id="modalCart6" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel">Ajouter un statut</h4>
+                <button type="button" class="close6" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body"></div>
+            <div class="text-danger text-center pb-3" id="error6"></div>
+        </div>
+        <!--Body-->
+        <div class="modal-body"></div>
+        <div class="text-danger" id="error6"></div>
+    </div>
+</div>
+</div>
+<!-- Modal: modalCart -->
+
+
+{% endblock %}
+{% block selectjs %}
+<script src="{{ asset('build/select.js') }}"></script>
+{% endblock %}

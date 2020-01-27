@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="mt-5 container-fluid">
+   <div class="w-100 lieustage_border">
+      <h2 class="text-center background_stage pt-2 pb-2 lieustage_margin">Lieu de stage - {{ lieuStage.nomCommune }}</h2>
+      <table class="table table-striped">
+         <tbody>
+            <tr>
+               <td class="font-weight-bold">Nom de l'établissement :</td>
+               <td class="text-left">{{ lieuStage.nomEtablissement }}</td>
+               <td class="font-weight-bold">N° d'agrément :</td>
+               <td class="text-left">{{ lieuStage.agrement }}</td>
+            </tr>
+            <tr>
+               <td class="font-weight-bold">N° de téléphone :</td>
+               <td class="text-left">{{ lieuStage.telephoneStage }}</td>
+               <td class="font-weight-bold">Adresse :</td>
+               <td class="text-left">{{ lieuStage.numeroAdresseStage }}, {{ lieuStage.adresseStage }}, {{ lieuStage.nomCommune }}</td>
+            </tr>
+            <tr>
+               <td class="font-weight-bold">Latitude Décimaux:</td>
+               <td class="text-left">{{ lieuStage.latitude }}</td>
+               <td class="font-weight-bold">Longitude Décimaux:</td>
+               <td class="text-left">{{ lieuStage.longitude }}</td>
+            </tr>
+            <tr>
+               <td class="font-weight-bold">Latitude DMS:</td>
+               <td class="text-left">{{ lieuStage.dmsLatitude }}</td>
+               <td class="font-weight-bold">Longitude DMS:</td>
+               <td class="text-left">{{ lieuStage.dmsLongitude }}</td>
+            </tr>
+             <tr>
+               <td class="font-weight-bold">Notes :</td>
+               <td class="text-left">{{ lieuStage.divers }}</td>
+            </tr>
+         </tbody>
+      </table>
+   </div>
+   <a href="{{ path('lieuStage_index') }}" class="btn retour lieustage_button mt-3">Retour</a>
+</div>
+
+{% endblock %}
