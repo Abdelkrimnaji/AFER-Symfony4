@@ -19,7 +19,7 @@
         "bootstrap-datepicker": "^1.8.0",
         "chart.js": "^2.7.3",
         "jquery": "^3.4.0",
-        "lodash": "^4.17.15",
+        "lodash": "^4.17.19",
         "mixin-deep": "^2.0.1",
         "popper.js": "^1.14.7",
         "select2": "^4.0.6-rc.1",
